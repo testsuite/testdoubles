@@ -1,0 +1,8 @@
+[run]
+branch = True
+source = mockingbird
+include = mockingbird/*
+omit = mockingbird/*/tests/*
+       mockingbird/tests/*
+       test_*.*
+       __init__.py

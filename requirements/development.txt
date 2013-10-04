@@ -1,0 +1,6 @@
+pyformat>=0.3.3
+
+
+-r ./common.txt
+-r ./testing.txt
+-r ./documentation.txt

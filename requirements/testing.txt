@@ -1,0 +1,8 @@
+tox>=1.6.0
+pyflakes>=0.7.3
+nose2>=0.4.7
+nose2-cov==1.0a4
+
+-r ./testing/integration.txt
+-r ./testing/functional.txt
+-r ./testing/unit.txt
