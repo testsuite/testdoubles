@@ -11,11 +11,21 @@ except pkg_resources.DistributionNotFound:
     __version__ = ''
 
 
+class TestDoubleConfigurationError(RuntimeError):
+    pass
+
+
 def fake(obj):
     """
 
     :param obj:
     """
-
-    if not hasattr(obj, 'Configuration'):
+    try:
+        configuration = obj.Configuration()
+    except AttributeError:
         raise TypeError('A fake testdouble must have a Configuration class.')
+
+    try:
+        spec = configuration.spec
+    except AttributeError:
+            raise TestDoubleConfigurationError('The type to be faked was not specified.')
