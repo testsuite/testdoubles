@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from mockingbird.compat import mock
 import pkg_resources
 
 __author__ = 'Omer Katz'
@@ -29,3 +30,5 @@ def fake(obj):
         spec = configuration.spec
     except AttributeError:
             raise TestDoubleConfigurationError('The type to be faked was not specified.')
+
+    testdouble = mock.Mock(spec_set=spec)
