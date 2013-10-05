@@ -39,6 +39,6 @@ with such.A('Fake Object') as it:
 
             qualified_name = get_qualified_name(spec)
 
-            m.assert_called_once_with(qualified_name, spec_set=spec, new=mock.ANY)
+            m.assert_called_once_with(qualified_name, spec=spec, spec_set=True, new=mock.ANY)
 
     it.createTests(globals())

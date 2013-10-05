@@ -49,4 +49,20 @@ with such.A('Fake Object') as it:
                                              '%s was not implemented when the object was faked.' % method_name):
                     method()
 
+    @it.should('replace the original methods with the fake methods')
+    def test_should_replace_the_original_methods_with_the_fake_methods(case):
+        class FakeObject(object):
+            class Configuration(object):
+                spec = RealObject
+
+            def was_faked(self):
+                return True
+
+        spec = FakeObject.Configuration().spec
+
+        with fake(FakeObject) as fake_type:
+            fake_obj = fake_type()
+
+            case.assertTrue(fake_obj.was_faked())
+
     it.createTests(globals())

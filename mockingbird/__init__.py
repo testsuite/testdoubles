@@ -67,4 +67,4 @@ def fake(obj):
     fake_qualified_name = get_qualified_name(obj)
     obj = type(fake_qualified_name, obj.__bases__, attrs)
 
-    return mock.patch(qualified_name, spec_set=spec, new=obj)
+    return mock.patch(qualified_name, spec=spec, spec_set=True, new=obj)
