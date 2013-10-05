@@ -18,8 +18,13 @@ class TestDoubleConfigurationError(RuntimeError):
 
 
 def get_qualified_name(obj):
-    return obj.__qualname__ if hasattr(obj, '__qualname__') else '%s.%s' % (
-        obj.__class__.__module__, obj.__class__.__name__)
+    try:
+        if obj.__module__ not in obj.__qualname__:
+            return '%s.%s' % (obj.__module__, obj.__qualname__)
+
+        return obj.__qualname__
+    except AttributeError:
+        return '%s.%s' % (obj.__module__, obj.__name__)
 
 
 def is_method_missing(method, spec, obj):
