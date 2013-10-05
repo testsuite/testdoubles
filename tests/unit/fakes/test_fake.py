@@ -15,19 +15,22 @@ with such.A('Fake Object') as it:
         class FakeObject(object):
             class Configuration(object):
                 pass
+
         with case.assertRaisesRegexp(TestDoubleConfigurationError, 'The type to be faked was not specified.'):
             fake(FakeObject)
 
-    @it.should('create a new mock object with the configured spec')
+    @it.should('create a new patch object with the configured spec')
     def test_should_create_a_new_mock_object_with_the_configured_spec(case):
         class FakeObject(object):
             class Configuration(object):
                 spec = mock.Mock()
+
         spec = FakeObject.Configuration().spec
 
-        with mock.patch('tests.common.compat.mock.Mock') as m:
+        with mock.patch('tests.common.compat.mock.patch') as m:
             fake(FakeObject)
 
-            m.assert_called_once_with(spec_set=spec)
+            m.assert_called_once_with(spec.__qualname__ if hasattr(spec, '__qualname__') else '%s.%s' % (
+                spec.__class__.__module__, spec.__class__.__name__), spec_set=spec, new=FakeObject)
 
     it.createTests(globals())
