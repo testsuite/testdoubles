@@ -59,10 +59,13 @@ def fake(obj):
 
     methods = get_missing_methods(spec, obj)
     for method in methods:
-        def default_implementation(*args, attr=method, **kwargs):
-            raise NotImplementedError('%s was not implemented when the object was faked.' % attr)
+        def make_default_implementation(attr):
+            def default_implementation(*args, **kwargs):
+                raise NotImplementedError('%s was not implemented when the object was faked.' % attr)
 
-        attrs.update({method: default_implementation})
+            return default_implementation
+
+        attrs.update({method: make_default_implementation})
 
     fake_qualified_name = get_qualified_name(obj)
     obj = type(fake_qualified_name, obj.__bases__, attrs)
