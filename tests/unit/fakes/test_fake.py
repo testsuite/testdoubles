@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from tests.common.compat import mock
+import inspect
+
 from nose2.tools import such
-from mockingbird import fake, TestDoubleConfigurationError
+
+from tests.common.compat import mock
+from mockingbird import fake, TestDoubleConfigurationError, get_qualified_name, get_missing_methods
+
 
 with such.A('Fake Object') as it:
     @it.should('raise a TypeError when the configuration does not exist')
@@ -30,7 +34,45 @@ with such.A('Fake Object') as it:
         with mock.patch('tests.common.compat.mock.patch') as m:
             fake(FakeObject)
 
-            m.assert_called_once_with(spec.__qualname__ if hasattr(spec, '__qualname__') else '%s.%s' % (
-                spec.__class__.__module__, spec.__class__.__name__), spec_set=spec, new=FakeObject)
+            qualified_name = get_qualified_name(spec)
+
+            m.assert_called_once_with(qualified_name, spec_set=spec, new=mock.ANY)
+
+    @it.should('contain all methods that are missing in the fake implementation')
+    def test_should_contain_all_methods(case):
+        class FakeObject(object):
+            class Configuration(object):
+                spec = mock.Mock()
+
+        spec = FakeObject.Configuration().spec
+
+        with fake(FakeObject):
+            fake_obj = mock.Mock()
+
+            case.assertEqual(
+                list(
+                    filter(lambda a: not a.startswith('__') and inspect.ismethod(getattr(fake_obj, a)), dir(fake_obj))),
+                list(filter(lambda a: not a.startswith('__') and inspect.ismethod(getattr(spec, a)), dir(spec))))
+
+    @it.should('raise NotImplementedError when invoking any method that is missing in the fake implementation')
+    def test_should_raise_not_implemented_error_when_invoking_missing_methods(case):
+        class FakeObject(object):
+            class Configuration(object):
+                spec = mock.Mock()
+
+        spec = FakeObject.Configuration().spec
+
+        with fake(FakeObject):
+            fake_obj = mock.Mock()
+
+            missing_methods = get_missing_methods(spec, FakeObject)
+
+            for method_name in missing_methods:
+                method = getattr(fake_obj, method_name)
+
+                with case.assertRaisesRegexp(NotImplementedError,
+                                             '%s was not implemented when the object was faked.' % method_name):
+                    method()
+
 
     it.createTests(globals())
