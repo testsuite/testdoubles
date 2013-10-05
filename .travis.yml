@@ -16,7 +16,7 @@ install:
 - pip install coveralls
 
 script:
-- python -m tests
+- nose2 --with-cov -v
 
 after_success:
   - coveralls
