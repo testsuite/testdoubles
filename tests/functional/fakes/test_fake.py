@@ -58,8 +58,6 @@ with such.A('Fake Object') as it:
             def was_faked(self):
                 return True
 
-        spec = FakeObject.Configuration().spec
-
         with fake(FakeObject) as fake_type:
             fake_obj = fake_type()
 
