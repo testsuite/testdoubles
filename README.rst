@@ -15,7 +15,7 @@ Mockingbird
         :alt: Build Status
 
 .. image:: https://coveralls.io/repos/testsuite/mockingbird/badge.png?branch=master
-    :target: https://coveralls.io/r/{ cookiecutter.github_username }}/mockingbird?branch=master
+:target: https://coveralls.io/r/testsuite/mockingbird?branch=master
     :alt: Coverage Status
 
 .. image:: https://www.versioneye.com/python/mockingbird/badge.png
