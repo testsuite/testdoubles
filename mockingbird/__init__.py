@@ -51,10 +51,13 @@ def substitute(obj, qualified_name, spec):
 
     class FakesPatcher(object):
         new = 1
+        
+        def _new(*args, **kwargs): 
+            return obj.__new__(obj)
 
         def __enter__(self):
             self._old_new = spec.__new__
-            spec.__new__ = lambda *args, **kwargs: obj.__new__(obj)
+            spec.__new__ = self._new
             return obj
 
         def __exit__(self, exc_type, exc_val, exc_tb):
