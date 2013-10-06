@@ -27,12 +27,22 @@ def get_qualified_name(obj):
         return '%s.%s' % (obj.__module__, obj.__name__)
 
 
-def is_method_missing(method, spec, obj):
-    return method not in dir(obj) and not method.startswith('__') and inspect.ismethod(getattr(spec, method))
+def is_method_missing(method_name, spec, obj):
+    method = getattr(spec, method_name)
+    return method_name not in dir(obj) and not method_name.startswith('__') and (
+        inspect.ismethod(method) or inspect.isfunction(method) or type(method).__name__ == 'function')
 
 
 def get_missing_methods(spec, obj):
     return list(filter(lambda method: is_method_missing(method, spec, obj), dir(spec)))
+
+
+def is_property_missing(prop, spec, obj):
+    return prop not in dir(obj) and not prop.startswith('__') and inspect.isdatadescriptor(getattr(spec, prop))
+
+
+def get_missing_properties(spec, obj):
+    return list(filter(lambda prop: is_property_missing(prop, spec, obj), dir(spec)))
 
 
 def fake(obj):
@@ -65,9 +75,21 @@ def fake(obj):
 
             return default_implementation
 
-        attrs.update({method: make_default_implementation})
+        attrs.update({method: make_default_implementation(method)})
+
+    properties = get_missing_properties(spec, obj)
+    for prop in properties:
+        def make_default_implementation(attr):
+            def default_implementation(*args, **kwargs):
+                raise NotImplementedError('%s was not implemented when the object was faked.' % attr)
+
+            return property(fget=lambda *args, **kwargs: default_implementation(*args, **kwargs),
+                            fset=lambda *args, **kwargs: default_implementation(*args, **kwargs),
+                            fdel=lambda *args, **kwargs: default_implementation(*args, **kwargs))
+
+        attrs.update({prop: make_default_implementation(prop)})
 
     fake_qualified_name = get_qualified_name(obj)
-    obj = type(fake_qualified_name, obj.__bases__, attrs)
+    obj = type(obj.__name__, obj.__bases__, attrs)
 
     return mock.patch(qualified_name, spec=spec, spec_set=True, new=obj)

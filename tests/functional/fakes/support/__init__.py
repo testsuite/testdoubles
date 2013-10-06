@@ -3,13 +3,16 @@
 
 
 class RealObject(object):
+    def __init__(self):
+        self._real = True
+
     def was_faked(self):
         return False
 
     @property
     def real(self):
-        return True
+        return self._real
 
     @real.setter
     def real(self, value):
-        pass
+        self._real = value
