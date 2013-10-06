@@ -18,8 +18,7 @@ with such.A('Fake Object') as it:
             class Configuration(object):
                 spec = RealObject
 
-        with fake(FakeObject) as f:
-            case.assertEqual(f().__class__.__name__, FakeObject.__name__)
+        with fake(FakeObject):
             case.assertEqual(RealObject().__class__.__name__, FakeObject.__name__)
 
     @it.should('contain all methods that are missing in the fake implementation')
@@ -42,12 +41,12 @@ with such.A('Fake Object') as it:
     def test_should_raise_not_implemented_error_when_invoking_missing_methods(case):
         class FakeObject(object):
             class Configuration(object):
-                spec = str
+                spec = RealObject
 
         spec = FakeObject.Configuration().spec
 
         with fake(FakeObject):
-            fake_obj = mock.Mock()
+            fake_obj = RealObject()
 
             missing_methods = get_missing_methods(spec, FakeObject)
 

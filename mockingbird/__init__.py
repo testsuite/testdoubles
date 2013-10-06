@@ -45,6 +45,26 @@ def get_missing_properties(spec, obj):
     return list(filter(lambda prop: is_property_missing(prop, spec, obj), dir(spec)))
 
 
+def substitute(obj, qualified_name, spec):
+    testdouble = mock.patch(qualified_name, spec=spec, spec_set=True, new=obj)
+    testdouble.attribute_name = qualified_name
+
+    class FakesPatcher(object):
+        new = 1
+
+        def __enter__(self):
+            self._old_new = spec.__new__
+            spec.__new__ = lambda *args, **kwargs: obj.__new__(obj)
+            return obj
+
+        def __exit__(self, exc_type, exc_val, exc_tb):
+            spec.__new__ = self._old_new
+
+    testdouble.additional_patchers.append(FakesPatcher())
+
+    return testdouble
+
+
 def fake(obj):
     """
 
@@ -92,4 +112,4 @@ def fake(obj):
     fake_qualified_name = get_qualified_name(obj)
     obj = type(obj.__name__, obj.__bases__, attrs)
 
-    return mock.patch(qualified_name, spec=spec, spec_set=True, new=obj)
+    return substitute(obj, qualified_name, spec)
