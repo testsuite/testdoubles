@@ -2,5 +2,5 @@
 # -*- coding: utf-8 -*-
 
 
-class FakeType(object):
+class FakeModule(object):
     pass

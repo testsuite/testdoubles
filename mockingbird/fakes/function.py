@@ -2,5 +2,5 @@
 # -*- coding: utf-8 -*-
 
 
-class FakeType(object):
+class FakeFunction(object):
     pass
