@@ -1,4 +1,4 @@
-pyformat>=0.3.3
+pyformat>=0.5.0
 
 
 -r ./common.txt

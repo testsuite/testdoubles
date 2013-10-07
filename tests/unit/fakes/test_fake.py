@@ -26,19 +26,4 @@ with such.A('Fake Object') as it:
         with case.assertRaisesRegexp(TestDoubleConfigurationError, 'The type to be faked was not specified.'):
             fake(FakeObject)
 
-    @it.should('create a new patch object with the configured spec')
-    def test_should_create_a_new_mock_object_with_the_configured_spec(case):
-        class FakeObject(object):
-            class Configuration(object):
-                spec = RealObject
-
-        spec = FakeObject.Configuration().spec
-
-        with mock.patch('tests.common.compat.mock.patch') as m:
-            fake(FakeObject)
-
-            qualified_name = get_qualified_name(spec)
-
-            m.assert_called_once_with(qualified_name, spec=spec, spec_set=True, new=mock.ANY)
-
     it.createTests(globals())

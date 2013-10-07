@@ -46,13 +46,8 @@ def get_missing_properties(spec, obj):
 
 
 def substitute(obj, qualified_name, spec):
-    testdouble = mock.patch(qualified_name, spec=spec, spec_set=True, new=obj)
-    testdouble.attribute_name = qualified_name
-
     class FakesPatcher(object):
-        new = 1
-        
-        def _new(*args, **kwargs): 
+        def _new(*args, **kwargs):
             return obj.__new__(obj)
 
         def __enter__(self):
@@ -63,9 +58,7 @@ def substitute(obj, qualified_name, spec):
         def __exit__(self, exc_type, exc_val, exc_tb):
             spec.__new__ = self._old_new
 
-    testdouble.additional_patchers.append(FakesPatcher())
-
-    return testdouble
+    return FakesPatcher()
 
 
 def fake(obj):
