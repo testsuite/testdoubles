@@ -3,10 +3,8 @@
 
 from nose2.tools import such
 
-from tests.common.compat import mock
-from mockingbird import fake, TestDoubleConfigurationError, get_qualified_name
+from mockingbird import fake, TestDoubleConfigurationError
 from tests.common.layers import UnitTestsLayer
-from tests.unit.fakes.support import RealObject
 
 
 with such.A('Fake Object') as it:
