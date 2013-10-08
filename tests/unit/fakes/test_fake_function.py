@@ -16,8 +16,9 @@ with such.A('Fake Function') as it:
     def test_should_return_true_if_the_live_function_is_an_instance_method(case):
         sut = FakeFunction(mock.DEFAULT)
 
-        with mock.patch('inspect.ismethod', return_value=True), mock.patch('inspect.getargspec', return_value=([], )):
-            actual = sut.is_instance_method
+        with mock.patch('inspect.ismethod', return_value=True):
+            with mock.patch('inspect.getargspec', return_value=([], )):
+                actual = sut.is_instance_method
 
         case.assertTrue(actual)
 
@@ -25,8 +26,9 @@ with such.A('Fake Function') as it:
     def test_should_return_true_if_the_live_function_is_an_unbound_instance_method(case):
         sut = FakeFunction(mock.DEFAULT)
 
-        with mock.patch('inspect.ismethod', return_value=False), mock.patch('inspect.getargspec', return_value=(('self', ), )):
-            actual = sut.is_instance_method
+        with mock.patch('inspect.ismethod', return_value=False):
+            with mock.patch('inspect.getargspec', return_value=(('self', ), )):
+                actual = sut.is_instance_method
 
         case.assertTrue(actual)
 
@@ -34,8 +36,9 @@ with such.A('Fake Function') as it:
     def test_should_return_false_if_the_live_function_is_not_an_instance_method(case):
         sut = FakeFunction(mock.DEFAULT)
 
-        with mock.patch('inspect.ismethod', return_value=False), mock.patch('inspect.getargspec', return_value=([], )):
-            actual = sut.is_instance_method
+        with mock.patch('inspect.ismethod', return_value=False):
+            with mock.patch('inspect.getargspec', return_value=([], )):
+                actual = sut.is_instance_method
 
         case.assertEquals(actual, False)
 
