@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 from nose2.tools import such
 from testdoubles.fakes.function import FakeFunction
-from testdoubles.fakes.type import FakeType
+from tests.common.layers import FunctionalTestsLayer
 
 with such.A('Fake Function') as it:
+    it.uses(FunctionalTestsLayer)
+
     @it.should("return true if the live function is an instance method")
     def test_should_return_true_if_the_live_function_is_an_instance_method(case):
         class klass(object):
