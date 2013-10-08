@@ -7,18 +7,18 @@ Using pip
 
 At the command line::
 
-    $ pip install mockingbird
+    $ pip install testdoubles
 
 Or, if you have virtualenvwrapper installed::
 
-    $ mkvirtualenv mockingbird -i mockingbird
+    $ mkvirtualenv testdoubles -i testdoubles
 
 From Source
 ===========
 
 In order to install from source simply type::
 
-    $ git clone http//github.com/testsuite/mockingbird
-    $ cd mockingbird
-    $ mkvirtualenv mockingbird
+    $ git clone http//github.com/testsuite/testdoubles
+    $ cd testdoubles
+    $ mkvirtualenv testdoubles
     $ python setup.py install

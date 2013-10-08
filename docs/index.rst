@@ -1,17 +1,17 @@
-Welcome to Mockingbird's documentation!
+Welcome to testdoubles's documentation!
 ======================================
 
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+:maxdepth: 2
 
-   overview
-   installation
-   usage
-   contributing
-   authors
-   changelog
+       overview
+       installation
+       usage
+       contributing
+       authors
+       changelog
 
 Indices and tables
 ==================

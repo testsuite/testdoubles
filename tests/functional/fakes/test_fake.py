@@ -4,7 +4,7 @@ import inspect
 from nose2.tools import such
 
 from tests.common.compat import mock
-from mockingbird import fake, get_missing_methods
+from testdoubles import fake, get_missing_methods
 from tests.common.layers import FunctionalTestsLayer
 from tests.functional.fakes.support import RealObject
 

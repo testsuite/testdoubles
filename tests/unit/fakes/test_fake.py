@@ -3,7 +3,7 @@
 
 from nose2.tools import such
 
-from mockingbird import fake, TestDoubleConfigurationError
+from testdoubles import fake, TestDoubleConfigurationError
 from tests.common.layers import UnitTestsLayer
 
 

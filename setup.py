@@ -22,24 +22,24 @@ install_reqs = parse_requirements('requirements.txt')
 reqs = [str(ir.req) for ir in install_reqs]
 
 config = {
-    'name': 'mockingbird',
+    'name': 'testdoubles',
     'version': '0.1.0',
-    'description': 'Mockingbird is a library that provides testdoubles.',
+    'description': 'testdoubles is a library that provides testdoubles.',
     'long_description': readme + '\n\n' + changelog,
     'author': 'Omer Katz',
     'author_email': 'omer.drow@gmail.com',
-    'url': 'https://github.com/testsuite/mockingbird',
+    'url': 'https://github.com/testsuite/testdoubles',
     'packages': [
-        'mockingbird',
+        'testdoubles',
     ],
-    'package_dir': {'mockingbird': 'mockingbird'},
+    'package_dir': {'testdoubles': 'testdoubles'},
     'include_package_data': True,
     'install_requires': reqs,
     'setup_requires': ['setuptools'],
     'test_suite': 'nose2.collector.collector',
     'license': 'BSD3',
     'zip_safe': False,
-    'keywords': 'mockingbird',
+    'keywords': 'testdoubles',
     'classifiers': [
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',

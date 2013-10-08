@@ -2,6 +2,6 @@
 Usage
 ========
 
-To use Mockingbird in a project::
+To use testdoubles in a project::
 
-	import mockingbird
+	import testdoubles

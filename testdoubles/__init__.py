@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 import inspect
 import pkg_resources
-from mockingbird.compat import mock
+from testdoubles.compat import mock
 
 __author__ = 'Omer Katz'
 __email__ = 'omer.drow@gmail.com'
 
 try:
-    __version__ = pkg_resources.get_distribution('mockingbird').version
+    __version__ = pkg_resources.get_distribution('testdoubles').version
 except pkg_resources.DistributionNotFound:
     __version__ = ''
 
