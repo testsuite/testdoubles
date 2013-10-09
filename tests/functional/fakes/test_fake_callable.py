@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from nose2.tools import such
-from testdoubles.fakes.function import FakeFunction
+from testdoubles.fakes.callable import FakeCallable
 from tests.common.layers import FunctionalTestsLayer
 
 with such.A('Fake Function') as it:
@@ -13,7 +13,7 @@ with such.A('Fake Function') as it:
             def function(self):
                 pass
 
-        sut = FakeFunction(klass().function)
+        sut = FakeCallable(klass().function)
 
         case.assertTrue(sut.is_instance_method)
 
@@ -23,7 +23,7 @@ with such.A('Fake Function') as it:
             def function(self):
                 pass
 
-        sut = FakeFunction(klass.function)
+        sut = FakeCallable(klass.function)
 
         case.assertTrue(sut.is_instance_method)
 
@@ -32,7 +32,7 @@ with such.A('Fake Function') as it:
         def function():
             pass
 
-        sut = FakeFunction(function)
+        sut = FakeCallable(function)
 
         case.assertEquals(sut.is_instance_method, False)
 
