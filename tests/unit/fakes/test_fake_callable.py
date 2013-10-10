@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from imp import reload
-from unittest import expectedFailure
-from nose2.tools import such
 import sys
+
+from nose2.tools import such
+
 from testdoubles.fakes import callable
 from tests.common.compat import mock
 from tests.common.layers import UnitTestsLayer
+
 
 with such.A("Fake Function's live property") as it:
     it.uses(UnitTestsLayer)
