@@ -11,7 +11,7 @@ if python3:
         def is_unbound_instance_method(self):
             try:
                 args = inspect.getargspec(self.live)[0]
-                return args[0] == 'self'
+                return args[0] == 'self' and not inspect.ismethod(self.live)
             except IndexError:
                 return False
 
