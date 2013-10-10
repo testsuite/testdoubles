@@ -3,6 +3,7 @@
 from imp import reload
 from unittest import expectedFailure
 from nose2.tools import such
+import sys
 from testdoubles.fakes import callable
 from tests.common.compat import mock
 from tests.common.layers import UnitTestsLayer
@@ -31,7 +32,10 @@ with such.A("Fake Function's is instance method property") as it:
     with it.having('a python 3.x runtime'):
         @it.has_test_setup
         def setup(case):
-            case.patch_python_version = mock.patch('testdoubles.fakes.callable.python3', new_callable=mock.PropertyMock, return_value=True)
+            stubbed_sys = mock.MagicMock()
+            stubbed_sys.version_info = (3, )
+
+            case.patch_python_version = mock.patch.dict(sys.modules, sys=stubbed_sys)
             case.patch_python_version.start()
 
             reload(callable)
@@ -96,7 +100,10 @@ with such.A("Fake Function's is instance method property") as it:
     with it.having('a python 2.x runtime'):
         @it.has_test_setup
         def setup(case):
-            case.patch_python_version = mock.patch('testdoubles.fakes.callable.python3', new_callable=mock.PropertyMock, return_value=False)
+            stubbed_sys = mock.MagicMock()
+            stubbed_sys.version_info = (2, )
+
+            case.patch_python_version = mock.patch.dict(sys.modules, sys=stubbed_sys)
             case.patch_python_version.start()
 
             reload(callable)
@@ -119,10 +126,13 @@ with such.A("Fake Function's is instance method property") as it:
 
         @it.should("return true if the live function is an unbound instance method")
         def test_should_return_true_if_the_live_function_is_an_unbound_instance_method(case):
-            sut = callable.FakeCallable(mock.DEFAULT)
+            mocked_callable = mock.MagicMock()
+            self = mock.PropertyMock()
+            self.return_value = False
+            type(mocked_callable).__self__ = self
+            sut = callable.FakeCallable(mocked_callable)
 
-            with mock.patch('inspect.ismethod', return_value=False):
-                with mock.patch('inspect.getargspec', return_value=(('self', ), )):
+            with mock.patch('inspect.ismethod', return_value=True):
                     actual = sut.is_instance_method
 
             case.assertTrue(actual)
@@ -147,15 +157,16 @@ with such.A("Fake Function's is instance method property") as it:
                     mocked_getargspec.assert_calls(sut.live)
 
         @it.should("detect unbound instance methods by inspecting their self attribute")
-        @expectedFailure
         def test_should_detect_unbound_instance_methods_by_inspecting_their_self_attribute(case):
             mocked_callable = mock.MagicMock()
-            type(mocked_callable).__self__ = mock.PropertyMock()
+            self = mock.PropertyMock()
+            self.return_value = False
+            type(mocked_callable).__self__ = self
 
             sut = callable.FakeCallable(mocked_callable)
 
-            with mock.patch('inspect.ismethod', return_value=False):
+            with mock.patch('inspect.ismethod', return_value=True):
                     _ = sut.is_unbound_instance_method
-                    mocked_callable.__self__.assert_called_once_with()
+                    self.assert_called_once_with()
 
     it.createTests(globals())
