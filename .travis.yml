@@ -9,6 +9,10 @@ python:
   - "2.6"
   - "pypy"
 
+env:
+- TESTSUITE=unit
+- TESTSUITE=functional
+
 install:
 - pip install -r requirements.txt
 - pip install -r requirements/testing.txt
@@ -16,7 +20,7 @@ install:
 - pip install coveralls
 
 script:
-- nose2 --with-cov -v
+- "nose2 --with-cov -v $TESTSUITE"
 
 after_success:
   - coveralls
