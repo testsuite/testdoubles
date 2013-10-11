@@ -30,6 +30,12 @@ else:
 
 class FakeCallable(CallableIntrospectionMixin):
     def __init__(self, live):
+        if not callable(live):
+            try:
+                raise TypeError('%s is not callable.' % live.__name__)
+            except AttributeError:
+                raise TypeError('The provided object is not callable.')
+
         self._live = live
 
     @property
