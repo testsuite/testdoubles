@@ -41,3 +41,6 @@ class FakeCallable(CallableIntrospectionMixin):
     @property
     def live(self):
         return self._live
+
+    def __call__(self, *args, **kwargs):
+        pass

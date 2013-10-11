@@ -9,6 +9,32 @@ from testdoubles.fakes import callables
 from tests.common.compat import mock
 from tests.common.layers import UnitTestsLayer
 
+with such.A("Fake Function object") as it:
+    it.uses(UnitTestsLayer)
+
+    @it.has_test_setup
+    def setup(case):
+        try:
+            case.old_callable = __builtins__['callable']
+            __builtins__['callable'] = lambda c: True
+        except TypeError:
+            case.old_callable = __builtins__.callable
+            __builtins__.callable = lambda c: True
+
+    @it.has_test_teardown
+    def teardown(case):
+        try:
+            __builtins__['callable'] = case.old_callable
+        except TypeError:
+            __builtins__.callable = case.old_callable
+
+    @it.should("be callable")
+    def test_should_be_callable(case):
+        sut = callables.FakeCallable(mock.DEFAULT)
+        case.assertTrue(case.old_callable(sut))
+
+    it.createTests(globals())
+
 with such.A("Fake Function's initialization method") as it:
     it.uses(UnitTestsLayer)
 
