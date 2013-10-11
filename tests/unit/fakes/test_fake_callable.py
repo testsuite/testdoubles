@@ -79,6 +79,40 @@ with such.A("Fake Function's live property") as it:
 
     it.createTests(globals())
 
+with such.A("Fake Function's fake property") as it:
+    it.uses(UnitTestsLayer)
+
+    @it.has_test_setup
+    def setup(case):
+        try:
+            case.old_callable = __builtins__['callable']
+            __builtins__['callable'] = lambda c: True
+        except TypeError:
+            case.old_callable = __builtins__.callable
+            __builtins__.callable = lambda c: True
+
+    @it.has_test_teardown
+    def teardown(case):
+        try:
+            __builtins__['callable'] = case.old_callable
+        except TypeError:
+            __builtins__.callable = case.old_callable
+
+    @it.should("have a read only property named fake")
+    def test_should_have_a_read_only_property_named_live(case):
+        sut = callables.FakeCallable(mock.DEFAULT)
+
+        with case.assertRaises(AttributeError):
+            sut.fake = mock.sentinel.VALUE
+
+    @it.should("be equal to the bound __call__ of the fake callable")
+    def test_should_have_a_read_only_property_named_live(case):
+        sut = callables.FakeCallable(mock.DEFAULT)
+
+        case.assertEqual(sut.fake, sut.fake)
+
+    it.createTests(globals())
+
 with such.A("Fake Function's is instance method property") as it:
     it.uses(UnitTestsLayer)
 
