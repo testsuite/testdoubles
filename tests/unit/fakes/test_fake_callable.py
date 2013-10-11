@@ -67,8 +67,12 @@ with such.A("Fake Function's is instance method property") as it:
 
             reload(callables)
 
-            case.old_callable = __builtins__['callable']
-            __builtins__['callable'] = lambda c: True
+            try:
+                case.old_callable = __builtins__['callable']
+                __builtins__['callable'] = lambda c: True
+            except TypeError:
+                case.old_callable = __builtins__.callable
+                __builtins__.callable = lambda c: True
 
         @it.has_test_teardown
         def teardown(case):
@@ -122,8 +126,12 @@ with such.A("Fake Function's is instance method property") as it:
 
             reload(callables)
 
-            case.old_callable = __builtins__['callable']
-            __builtins__['callable'] = lambda c: True
+            try:
+                case.old_callable = __builtins__['callable']
+                __builtins__['callable'] = lambda c: True
+            except TypeError:
+                case.old_callable = __builtins__.callable
+                __builtins__.callable = lambda c: True
 
         @it.has_test_teardown
         def teardown(case):
@@ -185,8 +193,12 @@ with such.A("Fake Function's is unbound instance method property") as it:
 
             reload(callables)
 
-            case.old_callable = __builtins__['callable']
-            __builtins__['callable'] = lambda c: True
+            try:
+                case.old_callable = __builtins__['callable']
+                __builtins__['callable'] = lambda c: True
+            except TypeError:
+                case.old_callable = __builtins__.callable
+                __builtins__.callable = lambda c: True
 
         @it.has_test_teardown
         def teardown(case):
@@ -262,8 +274,12 @@ with such.A("Fake Function's is unbound instance method property") as it:
 
             reload(callables)
 
-            case.old_callable = __builtins__['callable']
-            __builtins__['callable'] = lambda c: True
+            try:
+                case.old_callable = __builtins__['callable']
+                __builtins__['callable'] = lambda c: True
+            except TypeError:
+                case.old_callable = __builtins__.callable
+                __builtins__.callable = lambda c: True
 
         @it.has_test_teardown
         def teardown(case):
