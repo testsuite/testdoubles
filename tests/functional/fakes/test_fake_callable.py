@@ -13,6 +13,23 @@ with such.A("Fake Function's initialization method") as it:
         with case.assertRaisesRegexp(TypeError, r"[a-zA-Z1-9_]* is not callable"):
             FakeCallable(mock.NonCallableMagicMock())
 
+    @it.should("raise a ValueError when the provided live object does not match the argspec")
+    def test_should_raise_a_ValueError_when_the_provided_live_object_does_not_match_the_argspec(case):
+        with case.assertRaisesRegexp(ValueError, r"The provided live object's arguments ArgSpec\((?:[a-zA-Z1-9_]+=.+(?:, |(?=\))))+\) does not match ArgSpec\((?:[a-zA-Z1-9_]+=.+(?:, |(?=\))))+\)"):
+            def foo(): pass
+
+            FakeCallable(foo, inspect_args=True)
+
+    @it.should("not raise a ValueError when arguments inspection is opted out.")
+    def test_should_not_raise_a_ValueError_when_the_provided_live_object_does_not_match_the_argspec(case):
+        def foo(): pass
+
+        try:
+            FakeCallable(foo, inspect_args=False)
+        except ValueError:
+            case.fail()
+
+
     it.createTests(globals())
 
 with such.A("Fake Function's object initialization method") as it:

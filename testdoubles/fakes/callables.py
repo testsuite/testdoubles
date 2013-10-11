@@ -5,6 +5,9 @@ import sys
 
 python3 = sys.version_info[0] == 3
 
+def are_argspecs_identical(argspec1, argspec2):
+    return argspec1 == argspec2
+
 if python3:
     class CallableIntrospectionMixin(object):
         @property
@@ -29,12 +32,18 @@ else:
             return inspect.ismethod(self.live) or self.is_unbound_instance_method
 
 class FakeCallable(CallableIntrospectionMixin):
-    def __init__(self, live):
+    def __init__(self, live, inspect_args=False):
         if not callable(live):
             try:
                 raise TypeError('%s is not callable.' % live.__name__)
             except AttributeError:
                 raise TypeError('The provided object is not callable.')
+
+        if inspect_args:
+            live_args_spec = inspect.getargspec(live)
+            fake_args_spec = inspect.getargspec(self.__call__)
+            if live_args_spec != fake_args_spec:
+                raise ValueError("The provided live object's arguments %s does not match %s" % (live_args_spec, fake_args_spec))
 
         self._live = live
 
