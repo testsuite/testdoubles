@@ -35,16 +35,6 @@ with such.A("Fake Function object") as it:
 
     it.createTests(globals())
 
-with such.A("Fake Function's initialization method") as it:
-    it.uses(UnitTestsLayer)
-
-    @it.should("raise a TypeError when the provided live object is not callable")
-    def test_should_raise_a_TypeError_when_the_provided_live_object_is_not_callable(case):
-        with case.assertRaisesRegexp(TypeError, r"[a-zA-Z1-9_]* is not callable"):
-            callables.FakeCallable(mock.NonCallableMagicMock())
-
-    it.createTests(globals())
-
 with such.A("Fake Function's live property") as it:
     it.uses(UnitTestsLayer)
 
