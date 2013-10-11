@@ -32,3 +32,11 @@ Features
 --------
 
 * TODO
+
+Contributing
+============
+.. image:: https://badge.waffle.io/testsuite/testdoubles.png?label=ready
+    :target: http://waffle.io/testsuite/testdoubles
+    :alt: Stories in Ready
+
+See CONTRIBUTING.rst for details.
