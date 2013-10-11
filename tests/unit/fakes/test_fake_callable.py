@@ -24,12 +24,19 @@ with such.A("Fake Function's live property") as it:
 
     @it.has_test_setup
     def setup(case):
-        case.old_callable = __builtins__['callable']
-        __builtins__['callable'] = lambda c: True
+        try:
+            case.old_callable = __builtins__['callable']
+            __builtins__['callable'] = lambda c: True
+        except TypeError:
+            case.old_callable = __builtins__.callable
+            __builtins__.callable = lambda c: True
 
     @it.has_test_teardown
     def teardown(case):
-        __builtins__['callable'] = case.old_callable
+        try:
+            __builtins__['callable'] = case.old_callable
+        except TypeError:
+            __builtins__.callable = case.old_callable
 
     @it.should("have a read only property named live")
     def test_should_have_a_read_only_property_named_live(case):
@@ -69,7 +76,10 @@ with such.A("Fake Function's is instance method property") as it:
 
             reload(callables)
 
-            __builtins__['callable'] = case.old_callable
+            try:
+                __builtins__['callable'] = case.old_callable
+            except TypeError:
+                __builtins__.callable = case.old_callable
 
         @it.should("return true if the live function is an instance method")
         def test_should_return_true_if_the_live_function_is_an_instance_method(case):
@@ -121,7 +131,10 @@ with such.A("Fake Function's is instance method property") as it:
 
             reload(callables)
 
-            __builtins__['callable'] = case.old_callable
+            try:
+                __builtins__['callable'] = case.old_callable
+            except TypeError:
+                __builtins__.callable = case.old_callable
 
         @it.should("return true if the live function is an instance method")
         def test_should_return_true_if_the_live_function_is_an_instance_method(case):
@@ -181,7 +194,10 @@ with such.A("Fake Function's is unbound instance method property") as it:
 
             reload(callables)
 
-            __builtins__['callable'] = case.old_callable
+            try:
+                __builtins__['callable'] = case.old_callable
+            except TypeError:
+                __builtins__.callable = case.old_callable
 
         @it.should("return true if the live function is an unbound instance method")
         def test_should_return_true_if_the_live_function_is_an_unbound_instance_method(case):
@@ -255,7 +271,10 @@ with such.A("Fake Function's is unbound instance method property") as it:
 
             reload(callables)
 
-            __builtins__['callable'] = case.old_callable
+            try:
+                __builtins__['callable'] = case.old_callable
+            except TypeError:
+                __builtins__.callable = case.old_callable
 
         @it.should("return true if the live function is an unbound instance method")
         def test_should_return_true_if_the_live_function_is_an_unbound_instance_method(case):
