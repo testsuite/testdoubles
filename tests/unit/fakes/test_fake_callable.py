@@ -64,9 +64,6 @@ with such.A("Fake Function's initialization method") as it:
             callables.FakeCallable.__init__.func_globals['are_argspecs_identical'] = lambda _, __: False
 
         with case.assertRaisesRegexp(ValueError, r"The provided live object's arguments ArgSpec\((?:[a-zA-Z1-9_]+=.+(?:, |(?=\))))+\) does not match ArgSpec\((?:[a-zA-Z1-9_]+=.+(?:, |(?=\))))+\)"):
-            old_init_globals = callables.FakeCallable.__init__.__globals__
-            callables.FakeCallable.__init__.__globals__['are_argspecs_identical'] = lambda _, __: False
-
             with mock.patch('inspect.getargspec', return_value='ArgSpec(a=None)'):
                 callables.FakeCallable(mock.DEFAULT, inspect_args=True)
 
