@@ -35,6 +35,64 @@ with such.A("Fake Function object") as it:
 
     it.createTests(globals())
 
+with such.A("Fake Function's initialization method") as it:
+    it.uses(UnitTestsLayer)
+
+    @it.has_test_setup
+    def setup(case):
+        try:
+            case.old_callable = __builtins__['callable']
+            __builtins__['callable'] = lambda c: True
+        except TypeError:
+            case.old_callable = __builtins__.callable
+            __builtins__.callable = lambda c: True
+
+    @it.has_test_teardown
+    def teardown(case):
+        try:
+            __builtins__['callable'] = case.old_callable
+        except TypeError:
+            __builtins__.callable = case.old_callable
+
+    @it.should("raise a ValueError when the provided live object does not match the argspec")
+    def test_should_raise_a_ValueError_when_the_provided_live_object_does_not_match_the_argspec(case):
+        with case.assertRaisesRegexp(ValueError, r"The provided live object's arguments ArgSpec\((?:[a-zA-Z1-9_]+=.+(?:, |(?=\))))+\) does not match ArgSpec\((?:[a-zA-Z1-9_]+=.+(?:, |(?=\))))+\)"):
+            old_init_globals = callables.FakeCallable.__init__.__globals__
+            callables.FakeCallable.__init__.__globals__['are_argspecs_identical'] = lambda _, __: False
+
+            with mock.patch('inspect.getargspec', return_value='ArgSpec(a=None)'):
+                callables.FakeCallable(mock.DEFAULT, inspect_args=True)
+
+        callables.FakeCallable.__init__.__globals__.update(old_init_globals)
+
+    @it.should("not raise a ValueError when the provided live object matches the argspec")
+    def test_should_not_raise_a_ValueError_when_the_provided_live_object_matches_the_argspec(case):
+        old_init_globals = callables.FakeCallable.__init__.__globals__
+        callables.FakeCallable.__init__.__globals__['are_argspecs_identical'] = lambda _, __: True
+
+        try:
+            callables.FakeCallable(mock.DEFAULT, inspect_args=True)
+        except ValueError:
+            case.fail()
+
+        callables.FakeCallable.__init__.__globals__.update(old_init_globals)
+
+    @it.should("not inspect the argspec of the live object when argument inspection is opted out")
+    def test_should_not_inspect_the_argspec_of_the_live_object_when_argument_inspection_is_opted_out(case):
+        old_init_globals = callables.FakeCallable.__init__.__globals__
+        mocked_are_argspecs_identical = mock.Mock()
+        callables.FakeCallable.__init__.__globals__['are_argspecs_identical'] = mock.Mock()
+
+        try:
+            callables.FakeCallable(mock.DEFAULT, inspect_args=False)
+        except ValueError:
+            pass
+
+        mocked_are_argspecs_identical.assert_has_calls([])
+        callables.FakeCallable.__init__.__globals__.update(old_init_globals)
+
+    it.createTests(globals())
+
 with such.A("Fake Function's live property") as it:
     it.uses(UnitTestsLayer)
 

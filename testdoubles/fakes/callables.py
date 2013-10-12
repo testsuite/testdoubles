@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import inspect
 import sys
+from testdoubles.utils import are_argspecs_identical
 
 python3 = sys.version_info[0] == 3
 
@@ -36,13 +37,12 @@ class FakeCallable(CallableIntrospectionMixin):
             except AttributeError:
                 raise TypeError('The provided object is not callable.')
 
-        if inspect_args:
-            live_args_spec = inspect.getargspec(live)
-            fake_args_spec = inspect.getargspec(self.__call__)
-            if live_args_spec != fake_args_spec:
-                raise ValueError("The provided live object's arguments %s does not match %s" % (live_args_spec, fake_args_spec))
-
         self._live = live
+
+        if inspect_args:
+            if not are_argspecs_identical(self.live, self.fake):
+                raise ValueError("The provided live object's arguments %s does not match %s" % (inspect.getargspec(self.live), inspect.getargspec(self.fake)))
+
 
     @property
     def live(self):

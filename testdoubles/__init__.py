@@ -109,3 +109,7 @@ def fake(obj):
     obj = type(obj.__name__, obj.__bases__, attrs)
 
     return substitute(obj, qualified_name, spec)
+
+from testdoubles import utils
+
+__all__ = ('fake', 'utils')
