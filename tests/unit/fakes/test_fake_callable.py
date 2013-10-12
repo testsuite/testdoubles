@@ -67,8 +67,6 @@ with such.A("Fake Function's initialization method") as it:
             with mock.patch('inspect.getargspec', return_value='ArgSpec(a=None)'):
                 callables.FakeCallable(mock.DEFAULT, inspect_args=True)
 
-        callables.FakeCallable.__init__.__globals__.update(old_init_globals)
-
         try:
             callables.FakeCallable.__init__.__globals__.update(old_init_globals)
         except AttributeError:
