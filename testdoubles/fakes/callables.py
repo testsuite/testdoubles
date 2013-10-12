@@ -5,9 +5,6 @@ import sys
 
 python3 = sys.version_info[0] == 3
 
-def are_argspecs_identical(argspec1, argspec2):
-    return argspec1 == argspec2
-
 if python3:
     class CallableIntrospectionMixin(object):
         @property
