@@ -21,7 +21,7 @@ with such.A("Fake Function's initialization method") as it:
             FakeCallable(foo, inspect_args=True)
 
     @it.should("not raise a ValueError when arguments inspection is opted out.")
-    def test_should_not_raise_a_ValueError_when_the_provided_live_object_does_not_match_the_argspec(case):
+    def test_should_not_raise_a_ValueError_when_argument_inspection_is_opted_out(case):
         def foo(): pass
 
         try:
