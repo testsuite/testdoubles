@@ -29,6 +29,7 @@ else:
         def is_instance_method(self):
             return inspect.ismethod(self.live) or self.is_unbound_instance_method
 
+
 class FakeCallable(CallableIntrospectionMixin):
     def __init__(self, live, inspect_args=False):
         if not callable(live):
@@ -41,7 +42,8 @@ class FakeCallable(CallableIntrospectionMixin):
 
         if inspect_args:
             if not are_argspecs_identical(self.live, self.fake):
-                raise ValueError("The provided live object's arguments %s does not match %s" % (inspect.getargspec(self.live), inspect.getargspec(self.fake)))
+                raise ValueError("The provided live object's arguments %s does not match %s" % (
+                    inspect.getargspec(self.live), inspect.getargspec(self.fake)))
 
 
     @property
