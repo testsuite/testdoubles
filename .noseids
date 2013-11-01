@@ -14,45 +14,55 @@ I10
 sS"tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0004: should return false if the second method doesn't have the same amount of arguments as the first"
 p6
 I8
-sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0000: should return true if the first method has a keyword argument and the second method has specified a kwargs argument'
+sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0002: should return true if both methods have exactly the same keyword arguments'
 p7
+I11
+sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0000: should return true if the first method has a keyword argument and the second method has specified a kwargs argument'
+p8
 I9
 sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0001: should return true if the first method has specified a varargs argument and the second method has an argument '
-p8
+p9
 I5
 sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0002: should return true if both methods have the same amount of arguments'
-p9
+p10
 I6
 sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0002: should return false if the argspecs are completely different'
-p10
-I3
-sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0001: should return true if the argspecs are almost identical'
 p11
+I3
+sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0003: should return false if both methods have different keyword arguments and no kwargs argument'
+p12
+I12
+sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0001: should return true if the argspecs are almost identical'
+p13
 I2
 sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0000: should return true if the argspecs are completely identical'
-p12
+p14
 I1
 ssS'ids'
-p13
-(dp14
+p15
+(dp16
 I1
-g12
+g14
 sI2
-g11
+g13
 sI3
-g10
+g11
 sI4
 g3
 sI5
-g8
-sI6
 g9
+sI6
+g10
 sI7
 g4
 sI8
 g6
 sI9
-g7
+g8
 sI10
 g5
+sI11
+g7
+sI12
+g12
 ss.

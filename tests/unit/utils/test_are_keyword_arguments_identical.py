@@ -27,4 +27,18 @@ with such.A('keyword arguments comparison method') as it:
 
         case.assertTrue(actual)
 
+    @it.should("return true if both methods have exactly the same keyword arguments")
+    def test_should_return_true_if_both_methods_have_exactly_the_same_keyword_arguments(case):
+        actual = are_keyword_arguments_identical(inspect.ArgSpec(['a'], None, None, (mock.DEFAULT, )),
+                                                 inspect.ArgSpec(['a'], None, None, (mock.DEFAULT, )),)
+
+        case.assertTrue(actual)
+        
+    @it.should("return false if both methods have different keyword arguments and no kwargs argument")
+    def test_should_return_false_if_both_methods_have_different_keyword_arguments_and_no_kwargs_argument(case):
+        actual = are_keyword_arguments_identical(inspect.ArgSpec(['a'], None, None, (mock.DEFAULT, )),
+                                                 inspect.ArgSpec(['b'], None, None, (mock.DEFAULT, )),)
+
+        case.assertEqual(actual, False)
+
     it.createTests(globals())

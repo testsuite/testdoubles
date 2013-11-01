@@ -16,8 +16,12 @@ def are_keyword_arguments_identical(argspec1, argspec2):
     kwargs1 = argspec1.args[-len(argspec1.defaults):] if argspec1.defaults else []
     kwargs2 = argspec2.args[-len(argspec2.defaults):] if argspec2.defaults else []
 
+    if kwargs1 == kwargs2:
+        return True
     if any(_ for _ in kwargs1) and argspec2.keywords or any(_ for _ in kwargs2) and argspec1.keywords:
         return True
+
+    return False
 
 
 def are_argspecs_identical(callable1, callable2):
