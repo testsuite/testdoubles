@@ -4,9 +4,9 @@ import inspect
 
 
 def are_arguments_identical(argspec1, argspec2):
-    if len(argspec1[0]) == len(argspec2[0]):
+    if len(argspec1.args) == len(argspec2.args):
         return True
-    elif any(_ for _ in argspec1[0]) and argspec2[1] or any(_ for _ in argspec2[0]) and argspec1[1]:
+    elif any(_ for _ in argspec1.args) and argspec2.varargs or any(_ for _ in argspec2.args) and argspec1.varargs:
         return True
 
     return False
