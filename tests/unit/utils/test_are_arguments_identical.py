@@ -46,4 +46,22 @@ with such.A('arguments comparison method') as it:
 
         case.assertEqual(actual, False)
 
+    @it.should(
+        "return false if the first method has specified a varargs argument and the second method has no arguments")
+    def test_should_return_false_if_the_first_method_has_specified_a_varargs_argument_and_the_second_method_has_no_arguments(
+            case):
+        actual = are_arguments_identical(inspect.ArgSpec([], 'args', None, None),
+                                         inspect.ArgSpec([], None, None, None))
+
+        case.assertEqual(actual, False)
+
+    @it.should(
+        "return false if the first method has no arguments and the second method has specified a varargs argument")
+    def test_should_return_false_if_the_first_method_has_no_arguments_and_the_second_method_has_specified_a_varargs_argument(
+            case):
+        actual = are_arguments_identical(inspect.ArgSpec([], None, None, None),
+                                         inspect.ArgSpec([], 'args', None, None))
+
+        case.assertEqual(actual, False)
+
     it.createTests(globals())
