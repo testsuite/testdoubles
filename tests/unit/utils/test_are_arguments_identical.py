@@ -32,4 +32,18 @@ with such.A('arguments comparison method') as it:
 
         case.assertTrue(actual)
 
+    @it.should("return false if the first method doesn't have the same amount of arguments as the second")
+    def test_should_return_true_if_both_methods_have_the_same_amount_of_arguments(case):
+        actual = are_arguments_identical(inspect.ArgSpec(['a', 'b'], None, None, None),
+                                         inspect.ArgSpec(['a'], None, None, None))
+
+        case.assertEqual(actual, False)
+
+    @it.should("return false if the second method doesn't have the same amount of arguments as the first")
+    def test_should_return_true_if_both_methods_have_the_same_amount_of_arguments(case):
+        actual = are_arguments_identical(inspect.ArgSpec(['a'], None, None, None),
+                                         inspect.ArgSpec(['a', 'b'], None, None, None))
+
+        case.assertEqual(actual, False)
+
     it.createTests(globals())
