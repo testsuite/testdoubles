@@ -4,7 +4,12 @@ import inspect
 
 
 def are_arguments_identical(argspec1, argspec2):
-    pass
+    if len(argspec1[0]) == len(argspec2[0]):
+        return True
+    elif any(_ for _ in argspec1[0]) and argspec2[1] or any(_ for _ in argspec2[0]) and argspec1[1]:
+        return True
+
+    return False
 
 
 def are_keyword_arguments_identical(argspec1, argspec2):

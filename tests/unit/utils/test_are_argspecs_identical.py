@@ -7,7 +7,7 @@ from testdoubles.utils import are_argspecs_identical
 from tests.common.layers import UnitTestsLayer
 from tests.common.compat import mock
 
-with such.A('Arguments comparison method') as it:
+with such.A('argspecs comparison method') as it:
     it.uses(UnitTestsLayer)
 
     @it.should("return true if the argspecs are completely identical")
