@@ -3,18 +3,28 @@
 import inspect
 
 
+def get_keyword_arguments(argspec):
+    return argspec.args[-len(argspec.defaults):] if argspec.defaults else []
+
+
 def are_arguments_identical(argspec1, argspec2):
-    if len(argspec1.args) == len(argspec2.args) and not (argspec1.varargs or argspec2.varargs):
+    kwargs1 = get_keyword_arguments(argspec1)
+    kwargs2 = get_keyword_arguments(argspec2)
+
+    arguments1 = set(argspec1.args) - set(kwargs1)
+    arguments2 = set(argspec2.args) - set(kwargs2)
+
+    if len(arguments1) == len(arguments2) and not (argspec1.varargs or argspec2.varargs):
         return True
-    elif any(_ for _ in argspec1.args) and argspec2.varargs or any(_ for _ in argspec2.args) and argspec1.varargs:
+    elif any(_ for _ in arguments1) and argspec2.varargs or any(_ for _ in arguments2) and argspec1.varargs:
         return True
 
     return False
 
 
 def are_keyword_arguments_identical(argspec1, argspec2):
-    kwargs1 = argspec1.args[-len(argspec1.defaults):] if argspec1.defaults else []
-    kwargs2 = argspec2.args[-len(argspec2.defaults):] if argspec2.defaults else []
+    kwargs1 = get_keyword_arguments(argspec1)
+    kwargs2 = get_keyword_arguments(argspec2)
 
     if kwargs1 == kwargs2 and not (argspec1.keywords or argspec2.keywords):
         return True

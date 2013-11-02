@@ -59,12 +59,36 @@ with such.A('keyword arguments comparison method') as it:
 
         case.assertTrue(actual)
 
-    @it.should("return true if both methods contain exactly the same keyword arguments")
-    def test_should_return_true_if_both_methods_contain_exactly_the_same_keyword_arguments(case):
+    @it.should("return true if both methods have exactly the same keyword arguments")
+    def test_should_return_true_if_both_methods_have_exactly_the_same_keyword_arguments(case):
         def fake_callable1(a, k=mock.DEFAULT):
             pass
 
         def fake_callable2(b, k=mock.DEFAULT):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertTrue(actual)
+
+    @it.should("return true if the first method has a kwargs argument and the second method has keyword arguments")
+    def test_should_return_true_if_the_first_method_has_a_kwargs_argument_and_the_second_method_has_keyword_arguments(case):
+        def fake_callable1(**kwargs):
+            pass
+
+        def fake_callable2(k=mock.DEFAULT):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertTrue(actual)
+
+    @it.should("return true if the first method has keyword arguments and the second method has a kwargs argument ")
+    def test_should_return_true_if_the_first_method_has_has_keyword_arguments_and_the_second_method_a_kwargs_argument(case):
+        def fake_callable1(k=mock.DEFAULT):
+            pass
+
+        def fake_callable2(**kwargs):
             pass
 
         actual = are_argspecs_identical(fake_callable1, fake_callable2)
