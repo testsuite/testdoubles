@@ -5,34 +5,49 @@ p1
 S'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0002: should return true if the argspecs are not completely identical but the first method has a varargs argument'
 p3
 I3
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0005: should return false if the first method has no positional arguments and the second method has a varargs argument'
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0006: should return false if the first method has no positional arguments and the second method has a varargs argument'
 p4
-I6
+I7
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0003: should return true if the argspecs are not completely identical but the second method has a varargs argument'
 p5
 I4
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0001: should return true if the argspecs are not completely identical but have the same number of positional arguments'
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0005: should return false if the first method has a varargs argument and the second method has no positional arguments'
 p6
+I6
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0001: should return true if the argspecs are not completely identical but have the same number of positional arguments'
+p7
 I2
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0000: should return true if the argspecs are completely identical'
-p7
-I1
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0004: should return false if the first method has a varargs argument and the second method has no positional arguments'
 p8
+I1
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0007: should return false if the first method has a more positional arguments than the second method'
+p9
+I8
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0008: should return false if the second method has a more positional arguments than the first method'
+p10
+I9
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0004: should return true if both methods contain exactly the same keyword arguments'
+p11
 I5
 ssS'ids'
-p9
-(dp10
+p12
+(dp13
 I1
-g7
+g8
 sI2
-g6
+g7
 sI3
 g3
 sI4
 g5
 sI5
-g8
+g11
 sI6
+g6
+sI7
 g4
+sI8
+g9
+sI9
+g10
 ss.

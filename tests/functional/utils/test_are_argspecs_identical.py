@@ -58,6 +58,18 @@ with such.A('keyword arguments comparison method') as it:
         actual = are_argspecs_identical(fake_callable1, fake_callable2)
 
         case.assertTrue(actual)
+
+    @it.should("return true if both methods contain exactly the same keyword arguments")
+    def test_should_return_true_if_both_methods_contain_exactly_the_same_keyword_arguments(case):
+        def fake_callable1(a, k=mock.DEFAULT):
+            pass
+
+        def fake_callable2(b, k=mock.DEFAULT):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertTrue(actual)
         
     @it.should(
         'return false if the first method has a varargs argument and the second method has no positional arguments')
@@ -85,8 +97,7 @@ with such.A('keyword arguments comparison method') as it:
 
         case.assertEqual(actual, False)
 
-    @it.should(
-        'return false if the first method has a more positional arguments than the second method')
+    @it.should('return false if the first method has a more positional arguments than the second method')
     def test_should_return_false_if_the_first_method_has_more_positional_arguments_than_the_second_method(case):
         def fake_callable1(a):
             pass
@@ -98,8 +109,7 @@ with such.A('keyword arguments comparison method') as it:
 
         case.assertEqual(actual, False)
 
-    @it.should(
-        'return false if the second method has a more positional arguments than the first method')
+    @it.should('return false if the second method has a more positional arguments than the first method')
     def test_should_return_false_if_the_second_method_has_more_positional_arguments_than_the_first_method(case):
         def fake_callable1(a, b):
             pass
