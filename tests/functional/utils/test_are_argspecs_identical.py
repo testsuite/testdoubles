@@ -20,4 +20,17 @@ with such.A('keyword arguments comparison method') as it:
 
         case.assertTrue(actual)
 
+    @it.should(
+        'return true if the argspecs are not completely identical but have the same number of positional arguments')
+    def test_should_return_true_if_the_argspecs_are_completely_identical_but_have_the_same_number_of_positional_arguments(case):
+        def fake_callable1(a):
+            pass
+
+        def fake_callable2(b):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertTrue(actual)
+
     it.createTests(globals())

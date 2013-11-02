@@ -2,12 +2,27 @@
 S'tests'
 p1
 (dp2
-S'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0000: should return true if the argspecs are completely identical'
+S'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0003: should return true if the argspecs are not completely identical but the second method contains a varargs argument'
 p3
+I4
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0001: should return true if the argspecs are not completely identical but have the same number of positional arguments'
+p4
+I2
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0002: should return true if the argspecs are not completely identical but the first method contains a varargs argument'
+p5
+I3
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0000: should return true if the argspecs are completely identical'
+p6
 I1
 ssS'ids'
-p4
-(dp5
+p7
+(dp8
 I1
+g6
+sI2
+g4
+sI3
+g5
+sI4
 g3
 ss.
