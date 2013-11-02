@@ -2,27 +2,37 @@
 S'tests'
 p1
 (dp2
-S'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0003: should return true if the argspecs are not completely identical but the second method contains a varargs argument'
+S'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0002: should return true if the argspecs are not completely identical but the first method has a varargs argument'
 p3
+I3
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0005: should return false if the first method has no positional arguments and the second method has a varargs argument'
+p4
+I6
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0003: should return true if the argspecs are not completely identical but the second method has a varargs argument'
+p5
 I4
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0001: should return true if the argspecs are not completely identical but have the same number of positional arguments'
-p4
-I2
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0002: should return true if the argspecs are not completely identical but the first method contains a varargs argument'
-p5
-I3
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0000: should return true if the argspecs are completely identical'
 p6
-I1
-ssS'ids'
+I2
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0000: should return true if the argspecs are completely identical'
 p7
-(dp8
 I1
-g6
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0004: should return false if the first method has a varargs argument and the second method has no positional arguments'
+p8
+I5
+ssS'ids'
+p9
+(dp10
+I1
+g7
 sI2
-g4
+g6
 sI3
-g5
-sI4
 g3
+sI4
+g5
+sI5
+g8
+sI6
+g4
 ss.
