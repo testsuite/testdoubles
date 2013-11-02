@@ -33,4 +33,30 @@ with such.A('keyword arguments comparison method') as it:
 
         case.assertTrue(actual)
 
+    @it.should(
+        'return true if the argspecs are not completely identical but the first method contains a varargs argument')
+    def test_should_return_true_if_the_argspecs_are_completely_identical_but_the_first_method_contains_a_varargs_argument(case):
+        def fake_callable1(*args):
+            pass
+
+        def fake_callable2(a):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertTrue(actual)
+
+    @it.should(
+        'return true if the argspecs are not completely identical but the second method contains a varargs argument')
+    def test_should_return_true_if_the_argspecs_are_completely_identical_but_the_second_method_contains_a_varargs_argument(case):
+        def fake_callable1(a):
+            pass
+
+        def fake_callable2(*args):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertTrue(actual)
+
     it.createTests(globals())
