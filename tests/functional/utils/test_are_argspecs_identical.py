@@ -85,4 +85,30 @@ with such.A('keyword arguments comparison method') as it:
 
         case.assertEqual(actual, False)
 
+    @it.should(
+        'return false if the first method has a more positional arguments than the second method')
+    def test_should_return_false_if_the_first_method_has_more_positional_arguments_than_the_second_method(case):
+        def fake_callable1(a):
+            pass
+
+        def fake_callable2(a, b):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertEqual(actual, False)
+
+    @it.should(
+        'return false if the second method has a more positional arguments than the first method')
+    def test_should_return_false_if_the_second_method_has_more_positional_arguments_than_the_first_method(case):
+        def fake_callable1(a, b):
+            pass
+
+        def fake_callable2(a):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertEqual(actual, False)
+
     it.createTests(globals())
