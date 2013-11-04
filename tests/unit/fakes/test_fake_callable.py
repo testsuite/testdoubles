@@ -24,7 +24,9 @@ with such.A("Fake Function object") as it:
     @it.should("be callable")
     def test_should_be_callable(case):
         sut = callables.FakeCallable(mock.DEFAULT)
-        case.assertTrue(case.old_callable(sut))
+
+        callable = case.old_callable
+        case.assertTrue(callable(sut))
 
     it.createTests(globals())
 
@@ -39,8 +41,8 @@ with such.A("Fake Function's initialization method") as it:
     def teardown(case):
         unstub_callable(case)
 
-    @it.should("raise a ValueError when the provided live object does not match the argspec")
-    def test_should_raise_a_ValueError_when_the_provided_live_object_does_not_match_the_argspec(case):
+    @it.should("raise a value error when the provided live object does not match the argspec")
+    def test_should_raise_a_value_error_when_the_provided_live_object_does_not_match_the_argspec(case):
         stub_are_argspecs_identical(case, False)
 
         with case.assertRaisesRegexp(ValueError,
@@ -50,8 +52,8 @@ with such.A("Fake Function's initialization method") as it:
 
         unstub_are_argspecs_identical(case)
 
-    @it.should("not raise a ValueError when the provided live object matches the argspec")
-    def test_should_not_raise_a_ValueError_when_the_provided_live_object_matches_the_argspec(case):
+    @it.should("not raise a value error when the provided live object matches the argspec")
+    def test_should_not_raise_a_value_error_when_the_provided_live_object_matches_the_argspec(case):
         stub_are_argspecs_identical(case, True)
 
         try:
