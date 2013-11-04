@@ -121,6 +121,31 @@ with such.A('keyword arguments comparison method') as it:
 
         case.assertEqual(actual, False)
 
+    @it.should('return false if the first method has a kwargs argument and the second method has no keyword arguments')
+    def test_should_return_false_if_the_first_method_has_a_kwargs_argument_and_the_second_method_has_no_keyword_arguments(case):
+        def fake_callable1(b, **kwargs):
+            pass
+
+        def fake_callable2(a):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertEqual(actual, False)
+
+    @it.should(
+        'return false if the first method has no keyword arguments and the second method has a kwargs argument')
+    def test_should_return_false_if_the_first_method_has_no_keyword_arguments_and_the_second_method_has_a_kwargs_argument(case):
+        def fake_callable1(a):
+            pass
+
+        def fake_callable2(b, **kwargs):
+            pass
+
+        actual = are_argspecs_identical(fake_callable1, fake_callable2)
+
+        case.assertEqual(actual, False)
+
     @it.should('return false if the first method has a more positional arguments than the second method')
     def test_should_return_false_if_the_first_method_has_more_positional_arguments_than_the_second_method(case):
         def fake_callable1(a):
