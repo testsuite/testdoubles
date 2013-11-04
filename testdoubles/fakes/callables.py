@@ -56,6 +56,10 @@ else:
         def im_self(self):
             return self.__self__
 
+        @property
+        def im_class(self):
+            return self.__self__.__class__
+
 
 class FakeCallable(CallableIntrospectionMixin, CallableInternalAttributesMixin):
     def __init__(self, live, inspect_args=False):

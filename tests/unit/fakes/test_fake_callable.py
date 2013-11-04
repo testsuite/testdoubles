@@ -90,6 +90,14 @@ with such.A("Fake Function object") as it:
 
                 _ = sut.im_self
 
+        @it.should("raise an attribute error when attempting to use the im_class internal attribute")
+        def test_should_raise_an_attribute_error_when_attempting_to_use_the_im_class_internal_attribute(case):
+            with case.assertRaisesRegexp(AttributeError,
+                                         r"'FakeCallable' object has no attribute 'im_class'"):
+                sut = callables.FakeCallable(mock.DEFAULT)
+
+                _ = sut.im_class
+
     with it.having('a python 2.x runtime2'):
         @it.has_test_setup
         def setup(case):
@@ -142,7 +150,7 @@ with such.A("Fake Function object") as it:
 
                 _ = sut.__self__
 
-        @it.should("have an attribute named im self that is equal to the __self__ attribute")
+        @it.should("have an attribute named im_self that is equal to the __self__ attribute")
         def test_should_have_an_attribute_named_im_self_that_is_equal_to_the_self_attribute(case):
             live_callable, _ = fake_live_bound_callable()
             expected = live_callable.__self__
@@ -150,6 +158,17 @@ with such.A("Fake Function object") as it:
             sut = callables.FakeCallable(live_callable)
 
             actual = sut.im_self
+
+            case.assertEqual(actual, expected)
+
+        @it.should("have an attribute named im_class that is equal to the __self__ attribute's type")
+        def test_should_have_an_attribute_named_im_self_that_is_equal_to_the_self_attribute_type(case):
+            live_callable, _ = fake_live_bound_callable()
+            expected = live_callable.__self__.__class__
+
+            sut = callables.FakeCallable(live_callable)
+
+            actual = sut.im_class
 
             case.assertEqual(actual, expected)
 
