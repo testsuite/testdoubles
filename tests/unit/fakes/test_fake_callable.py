@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from inspect import ArgSpec
 
 from nose2.tools import such
 
@@ -41,13 +42,20 @@ with such.A("Fake Function's initialization method") as it:
     def teardown(case):
         unstub_callable(case)
 
+    @it.should("raise a value error when inspecting arguments of a builtin callable")
+    def test_should_raise_a_value_error_when_inspecting_arguments_of_a_builtin_callable(case):
+        with case.assertRaisesRegexp(ValueError,
+                                     r"Cannot inspect arguments of a builtin live object."):
+            with mock.patch('inspect.isbuiltin', return_value=True):
+                callables.FakeCallable(mock.DEFAULT, inspect_args=True)
+
     @it.should("raise a value error when the provided live object does not match the argspec")
     def test_should_raise_a_value_error_when_the_provided_live_object_does_not_match_the_argspec(case):
         stub_are_argspecs_identical(case, False)
 
         with case.assertRaisesRegexp(ValueError,
                                      r"The provided live object's arguments ArgSpec\((?:[a-zA-Z1-9_]+=.+(?:, |(?=\))))+\) does not match ArgSpec\((?:[a-zA-Z1-9_]+=.+(?:, |(?=\))))+\)"):
-            with mock.patch('inspect.getargspec', return_value='ArgSpec(a=None)'):
+            with mock.patch('inspect.getargspec', return_value=ArgSpec(['a'], None, None, (None,))):
                 callables.FakeCallable(mock.DEFAULT, inspect_args=True)
 
         unstub_are_argspecs_identical(case)

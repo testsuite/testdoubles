@@ -41,6 +41,9 @@ class FakeCallable(CallableIntrospectionMixin):
         self._live = live
 
         if inspect_args:
+            if inspect.isbuiltin(self.live):
+                raise ValueError('Cannot inspect arguments of a builtin live object.')
+
             if not are_argspecs_identical(self.live, self.fake):
                 raise ValueError("The provided live object's arguments %s does not match %s" % (
                     inspect.getargspec(self.live), inspect.getargspec(self.fake)))
