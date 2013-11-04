@@ -6,6 +6,23 @@ from testdoubles.utils import are_argspecs_identical
 
 python3 = sys.version_info[0] == 3
 
+
+class CallableInternalAttributesBaseMixin(object):
+    @property
+    def __name__(self):
+        if not self.is_instance_method and not inspect.isfunction(self.live):
+            return self.live.__class__.__name__
+
+        return self.live.__name__
+
+    @property
+    def __self__(self):
+        try:
+            return self.live.__self__
+        except AttributeError:
+            raise AttributeError("'function' object has no attribute '__self__'")
+
+
 if python3:
     class CallableIntrospectionMixin(object):
         @property
@@ -22,13 +39,8 @@ if python3:
         def is_instance_method(self):
             return inspect.ismethod(self.live) or self.is_unbound_instance_method
 
-    class CallableInternalAttributesMixin(object):
-        @property
-        def __name__(self):
-            if not self.is_instance_method and not inspect.isfunction(self.live):
-                return self.live.__class__.__name__
-
-            return self.live.__name__
+    class CallableInternalAttributesMixin(CallableInternalAttributesBaseMixin):
+        pass
 else:
     class CallableIntrospectionMixin(object):
         @property
@@ -39,13 +51,10 @@ else:
         def is_instance_method(self):
             return inspect.ismethod(self.live) or self.is_unbound_instance_method
 
-    class CallableInternalAttributesMixin(object):
+    class CallableInternalAttributesMixin(CallableInternalAttributesBaseMixin):
         @property
-        def __name__(self):
-            if not self.is_instance_method and not inspect.isfunction(self.live):
-                return self.live.__class__.__name__
-
-            return self.live.__name__
+        def im_self(self):
+            return self.__self__
 
 
 class FakeCallable(CallableIntrospectionMixin, CallableInternalAttributesMixin):

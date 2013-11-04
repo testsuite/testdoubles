@@ -3,7 +3,7 @@
 import mock
 
 
-def fake_real_callable():
+def fake_live_bound_callable():
     mocked_callable = mock.MagicMock()
     self = mock.PropertyMock()
     type(mocked_callable).__self__ = self

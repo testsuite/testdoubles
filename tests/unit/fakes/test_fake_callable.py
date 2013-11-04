@@ -7,7 +7,7 @@ from nose2.tools import such
 from testdoubles.fakes import callables
 from tests.common.compat import mock
 from tests.common.layers import UnitTestsLayer
-from tests.unit.fakes.support.fakes import fake_real_callable
+from tests.unit.fakes.support.fakes import fake_live_bound_callable
 from tests.unit.fakes.support.mocks import mock_are_argspecs_identical, unmock_are_argspecs_identical
 from tests.unit.fakes.support.stubs import stub_callable, unstub_callable, stub_are_argspecs_identical, unstub_are_argspecs_identical, stub_python_version, unstub_python_version
 
@@ -63,6 +63,33 @@ with such.A("Fake Function object") as it:
 
                         case.assertEqual(actual, expected)
 
+        @it.should("have a reference to the instance if the method is bound")
+        def test_should_have_a_reference_to_the_instance_if_the_method_is_bound(case):
+            live_callable, _ = fake_live_bound_callable()
+            expected = live_callable.__self__
+
+            sut = callables.FakeCallable(live_callable)
+
+            actual = sut.__self__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("raise an attribute error when accessing __self__ and the method is not bound")
+        def test_should_raise_an_attribute_error_when_accessing_self_and_the_method_is_not_bound(case):
+            with case.assertRaisesRegexp(AttributeError,
+                                         r"'function' object has no attribute '__self__'"):
+                sut = callables.FakeCallable(mock.DEFAULT)
+
+                _ = sut.__self__
+
+        @it.should("raise an attribute error when attempting to use the im_self alias")
+        def test_should_raise_an_attribute_error_when_attempting_to_use_the_im_self_alias(case):
+            with case.assertRaisesRegexp(AttributeError,
+                                         r"'FakeCallable' object has no attribute 'im_self'"):
+                sut = callables.FakeCallable(mock.DEFAULT)
+
+                _ = sut.im_self
+
     with it.having('a python 2.x runtime2'):
         @it.has_test_setup
         def setup(case):
@@ -95,6 +122,36 @@ with such.A("Fake Function object") as it:
                     actual = sut.__name__
 
                     case.assertEqual(actual, expected)
+
+        @it.should("have a reference to the instance if the method is bound")
+        def test_should_have_a_reference_to_the_instance_if_the_method_is_bound(case):
+            live_callable, _ = fake_live_bound_callable()
+            expected = live_callable.__self__
+
+            sut = callables.FakeCallable(live_callable)
+
+            actual = sut.__self__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("raise an attribute error when accessing __self__ and the method is not bound")
+        def test_should_raise_an_attribute_error_when_accessing_self_and_the_method_is_not_bound(case):
+            with case.assertRaisesRegexp(AttributeError,
+                                         r"'function' object has no attribute '__self__'"):
+                sut = callables.FakeCallable(mock.DEFAULT)
+
+                _ = sut.__self__
+
+        @it.should("have an attribute named im self that is equal to the __self__ attribute")
+        def test_should_have_an_attribute_named_im_self_that_is_equal_to_the_self_attribute(case):
+            live_callable, _ = fake_live_bound_callable()
+            expected = live_callable.__self__
+
+            sut = callables.FakeCallable(live_callable)
+
+            actual = sut.im_self
+
+            case.assertEqual(actual, expected)
 
     it.createTests(globals())
 
@@ -277,7 +334,7 @@ with such.A("Fake Function's is instance method property") as it:
 
         @it.should("return true if the live function is an unbound instance method")
         def test_should_return_true_if_the_live_function_is_an_unbound_instance_method(case):
-            mocked_callable, self = fake_real_callable()
+            mocked_callable, self = fake_live_bound_callable()
 
             sut = callables.FakeCallable(mocked_callable)
 
@@ -355,7 +412,7 @@ with such.A("Fake Function's is unbound instance method property") as it:
 
         @it.should("not detect unbound instance methods by inspecting their self attribute")
         def test_should_not_detect_unbound_instance_methods_by_inspecting_their_self_attribute(case):
-            mocked_callable, self = fake_real_callable()
+            mocked_callable, self = fake_live_bound_callable()
 
             sut = callables.FakeCallable(mocked_callable)
 
@@ -379,7 +436,7 @@ with such.A("Fake Function's is unbound instance method property") as it:
 
         @it.should("return true if the live function is an unbound instance method")
         def test_should_return_true_if_the_live_function_is_an_unbound_instance_method(case):
-            mocked_callable, self = fake_real_callable()
+            mocked_callable, self = fake_live_bound_callable()
 
             sut = callables.FakeCallable(mocked_callable)
 
@@ -390,7 +447,7 @@ with such.A("Fake Function's is unbound instance method property") as it:
 
         @it.should("return false if the live function is a bound instance method")
         def test_should_return_false_if_the_live_function_is_a_bound_instance_method(case):
-            mocked_callable, self = fake_real_callable()
+            mocked_callable, self = fake_live_bound_callable()
 
             sut = callables.FakeCallable(mocked_callable)
 
@@ -421,7 +478,7 @@ with such.A("Fake Function's is unbound instance method property") as it:
 
         @it.should("detect unbound instance methods by inspecting their self attribute")
         def test_should_detect_unbound_instance_methods_by_inspecting_their_self_attribute(case):
-            mocked_callable, self = fake_real_callable()
+            mocked_callable, self = fake_live_bound_callable()
 
             sut = callables.FakeCallable(mocked_callable)
 
