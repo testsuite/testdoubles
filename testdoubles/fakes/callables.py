@@ -15,6 +15,8 @@ if python3:
                 return args[0] == 'self' and not inspect.ismethod(self.live)
             except IndexError:
                 return False
+            except TypeError:
+                return False
 
         @property
         def is_instance_method(self):
