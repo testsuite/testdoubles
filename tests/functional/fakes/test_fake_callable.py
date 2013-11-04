@@ -5,6 +5,22 @@ from testdoubles.fakes.callables import FakeCallable
 from tests.common.layers import FunctionalTestsLayer
 from tests.common.compat import mock
 
+with such.A("Fake Function object") as it:
+    it.uses(FunctionalTestsLayer)
+
+    @it.should("have the same name as the live object")
+    def test_should_have_the_same_name_as_the_live_object(case):
+        def foo(): pass
+
+        sut = FakeCallable(foo)
+        expected = foo.__name__
+
+        actual = sut.__name__
+
+        case.assertEqual(actual, expected)
+
+    it.createTests(globals())
+
 with such.A("Fake Function's initialization method") as it:
     it.uses(FunctionalTestsLayer)
 

@@ -29,6 +29,42 @@ with such.A("Fake Function object") as it:
         callable = case.old_callable
         case.assertTrue(callable(sut))
 
+    with it.having('a python 3.x runtime2'):
+        @it.has_test_setup
+        def setup(case):
+            stub_python_version(case, 3)
+
+        @it.has_test_teardown
+        def teardown(case):
+            unstub_python_version(case)
+
+        @it.should("have the same name as the live object")
+        def test_should_have_the_same_name_as_the_live_object(case):
+            sut = callables.FakeCallable(object)
+            expected = object.__name__
+
+            actual = sut.__name__
+
+            case.assertEqual(actual, expected)
+
+    with it.having('a python 2.x runtime2'):
+        @it.has_test_setup
+        def setup(case):
+            stub_python_version(case, 2)
+
+        @it.has_test_teardown
+        def teardown(case):
+            unstub_python_version(case)
+
+        @it.should("have the same name as the live object")
+        def test_should_have_the_same_name_as_the_live_object(case):
+            sut = callables.FakeCallable(object)
+            expected = object.__name__
+
+            actual = sut.__name__
+
+            case.assertEqual(actual, expected)
+
     it.createTests(globals())
 
 with such.A("Fake Function's initialization method") as it:

@@ -19,6 +19,11 @@ if python3:
         @property
         def is_instance_method(self):
             return inspect.ismethod(self.live) or self.is_unbound_instance_method
+
+    class CallableInternalAttributesMixin(object):
+        @property
+        def __name__(self):
+            return self.live.__name__
 else:
     class CallableIntrospectionMixin(object):
         @property
@@ -29,8 +34,13 @@ else:
         def is_instance_method(self):
             return inspect.ismethod(self.live) or self.is_unbound_instance_method
 
+    class CallableInternalAttributesMixin(object):
+        @property
+        def __name__(self):
+            return self.live.__name__
 
-class FakeCallable(CallableIntrospectionMixin):
+
+class FakeCallable(CallableIntrospectionMixin, CallableInternalAttributesMixin):
     def __init__(self, live, inspect_args=False):
         if not callable(live):
             try:
