@@ -148,10 +148,10 @@ with such.A('keyword arguments comparison method') as it:
 
     @it.should('return false if both methods have different keyword arguments')
     def test_should_return_false_if_both_methods_have_different_keyword_arguments(case):
-        def fake_callable1(b, k=mock.DEFAULT):
+        def fake_callable1(a, k=mock.DEFAULT):
             pass
 
-        def fake_callable2(a, kk=mock.DEFAULT):
+        def fake_callable2(b, kk=mock.DEFAULT):
             pass
 
         actual = are_argspecs_identical(fake_callable1, fake_callable2)
