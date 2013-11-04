@@ -23,6 +23,9 @@ if python3:
     class CallableInternalAttributesMixin(object):
         @property
         def __name__(self):
+            if not self.is_instance_method and not inspect.isfunction(self.live):
+                return self.live.__class__.__name__
+
             return self.live.__name__
 else:
     class CallableIntrospectionMixin(object):
@@ -37,6 +40,9 @@ else:
     class CallableInternalAttributesMixin(object):
         @property
         def __name__(self):
+            if not self.is_instance_method and not inspect.isfunction(self.live):
+                return self.live.__class__.__name__
+
             return self.live.__name__
 
 

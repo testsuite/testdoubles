@@ -18,6 +18,19 @@ with such.A("Fake Function object") as it:
         actual = sut.__name__
 
         case.assertEqual(actual, expected)
+        
+    @it.should("have the same name as the live object when the live object is a callable class instance")
+    def test_should_have_the_same_name_as_the_live_object_when_the_live_object_is_a_callable_class_instance(case):
+        class Foo(object):
+            def __call__(self, *args, **kwargs):
+                pass
+
+        sut = FakeCallable(Foo())
+        expected = Foo.__name__
+
+        actual = sut.__name__
+
+        case.assertEqual(actual, expected)
 
     it.createTests(globals())
 

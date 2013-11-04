@@ -32,38 +32,69 @@ with such.A("Fake Function object") as it:
     with it.having('a python 3.x runtime2'):
         @it.has_test_setup
         def setup(case):
+            stub_callable(case, True)
             stub_python_version(case, 3)
 
         @it.has_test_teardown
         def teardown(case):
             unstub_python_version(case)
+            unstub_callable(case)
 
         @it.should("have the same name as the live object")
         def test_should_have_the_same_name_as_the_live_object(case):
-            sut = callables.FakeCallable(object)
-            expected = object.__name__
+            with mock.patch('inspect.ismethod', return_value=True):
+                with mock.patch('inspect.isfunction', return_value=True):
+                    sut = callables.FakeCallable(object)
+                    expected = object.__name__
 
-            actual = sut.__name__
+                    actual = sut.__name__
 
-            case.assertEqual(actual, expected)
+                    case.assertEqual(actual, expected)
+
+        @it.should("have the same name as the live object when the live object is a callable class instance")
+        def test_should_have_the_same_name_as_the_live_object_when_the_live_object_is_a_callable_class_instance(case):
+            with mock.patch('inspect.ismethod', return_value=False):
+                with mock.patch('inspect.isfunction', return_value=False):
+                    with mock.patch('inspect.getargspec', return_value=[]):
+                        sut = callables.FakeCallable(mock.DEFAULT)
+                        expected = mock.DEFAULT.__class__.__name__
+
+                        actual = sut.__name__
+
+                        case.assertEqual(actual, expected)
 
     with it.having('a python 2.x runtime2'):
         @it.has_test_setup
         def setup(case):
+            stub_callable(case, True)
             stub_python_version(case, 2)
 
         @it.has_test_teardown
         def teardown(case):
             unstub_python_version(case)
+            unstub_callable(case)
 
         @it.should("have the same name as the live object")
         def test_should_have_the_same_name_as_the_live_object(case):
-            sut = callables.FakeCallable(object)
-            expected = object.__name__
+            with mock.patch('inspect.ismethod', return_value=True):
+                with mock.patch('inspect.isfunction', return_value=True):
+                    sut = callables.FakeCallable(object)
+                    expected = object.__name__
 
-            actual = sut.__name__
+                    actual = sut.__name__
 
-            case.assertEqual(actual, expected)
+                    case.assertEqual(actual, expected)
+
+        @it.should("have the same name as the live object when the live object is a callable class instance")
+        def test_should_have_the_same_name_as_the_live_object_when_the_live_object_is_a_callable_class_instance(case):
+            with mock.patch('inspect.ismethod', return_value=False):
+                with mock.patch('inspect.isfunction', return_value=False):
+                    sut = callables.FakeCallable(mock.DEFAULT)
+                    expected = mock.DEFAULT.__class__.__name__
+
+                    actual = sut.__name__
+
+                    case.assertEqual(actual, expected)
 
     it.createTests(globals())
 
