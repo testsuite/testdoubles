@@ -105,7 +105,8 @@ with such.A("Fake Function object") as it:
             sut = callables.FakeCallable(live_callable)
             expected = sut.fake.__func__
             with mock.patch('inspect.ismethod', return_value=True):
-                actual = sut.__func__
+                with mock.patch('inspect.getargspec', return_value=ArgSpec(['self'], None, None, None)):
+                    actual = sut.__func__
 
             case.assertEqual(actual, expected)
 
