@@ -74,8 +74,8 @@ with such.A("Fake Function object") as it:
 
             case.assertEqual(actual, expected)
 
-        @it.should("raise an attribute error when accessing __self__ and the method is not bound")
-        def test_should_raise_an_attribute_error_when_accessing_self_and_the_method_is_not_bound(case):
+        @it.should("raise an attribute error when accessing __self__ and the method is not a bound or unbound instance method")
+        def test_should_raise_an_attribute_error_when_accessing_self_and_the_method_is_not_a_bound_or_unbound_instance_method(case):
             with case.assertRaisesRegexp(AttributeError,
                                          r"'function' object has no attribute '__self__'"):
                 sut = callables.FakeCallable(mock.DEFAULT)
@@ -121,8 +121,8 @@ with such.A("Fake Function object") as it:
 
             case.assertEqual(actual, expected)
 
-        @it.should("raise an attribute error when accessing __func__ and the method is not bound")
-        def test_should_raise_an_attribute_error_when_accessing_func_and_the_method_is_not_bound(case):
+        @it.should("raise an attribute error when accessing __func__ and the method is not a bound or unbound instance method")
+        def test_should_raise_an_attribute_error_when_accessing_func_and_the_method_is_not_a_bound_or_unbound_instance_method(case):
             with case.assertRaisesRegexp(AttributeError,
                                          r"'function' object has no attribute '__func__'"):
                 sut = callables.FakeCallable(mock.DEFAULT)
@@ -173,8 +173,8 @@ with such.A("Fake Function object") as it:
 
             case.assertEqual(actual, expected)
 
-        @it.should("raise an attribute error when accessing __self__ and the method is not bound")
-        def test_should_raise_an_attribute_error_when_accessing_self_and_the_method_is_not_bound(case):
+        @it.should("raise an attribute error when accessing __self__ and the method is not a bound or unbound instance method")
+        def test_should_raise_an_attribute_error_when_accessing_self_and_the_method_is_not_a_bound_or_unbound_instance_method(case):
             with case.assertRaisesRegexp(AttributeError,
                                          r"'function' object has no attribute '__self__'"):
                 sut = callables.FakeCallable(mock.DEFAULT)
@@ -225,8 +225,8 @@ with such.A("Fake Function object") as it:
 
             case.assertEqual(actual, expected)
 
-        @it.should("raise an attribute error when accessing __func__ and the method is not bound")
-        def test_should_raise_an_attribute_error_when_accessing_func_and_the_method_is_not_bound(case):
+        @it.should("raise an attribute error when accessing __func__ and the method is not a bound or unbound instance method")
+        def test_should_raise_an_attribute_error_when_accessing_func_and_the_method_is_not_a_bound_or_unbound_instance_method(case):
             with case.assertRaisesRegexp(AttributeError,
                                          r"'function' object has no attribute '__func__'"):
                 sut = callables.FakeCallable(mock.DEFAULT)
