@@ -4,515 +4,530 @@ p1
 (dp2
 S'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0005: should return false if the first method has specified a varargs argument and the second method has no arguments'
 p3
-I95
+I98
 sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0000: should return true if the argspecs are completely identical'
 p4
-I87
+I90
 sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0000: should have the same name as the live object'
 p5
-I78
+I80
 sS"tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0003: should return false if the first method doesn't have the same amount of arguments as the second"
 p6
-I93
+I96
 sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0005: should raise an attribute error when attempting to use the im_class internal attribute'
 p7
 I22
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0010: should return false if the first method has no keyword arguments and the second method has a kwargs argument'
 p8
-I38
+I39
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0008: should return false if the first method has no positional arguments and the second method has a varargs argument'
 p9
-I36
+I37
 sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0008: should raise an attribute error when accessing __func__ and the method is not a bound or unbound instance method'
 p10
-I77
-sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0000: should have the same name as the live object'
+I78
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0009: should have the same docstring as the live callable'
 p11
+I79
+sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0000: should have the same name as the live object'
+p12
 I17
 sS'tests.unit.fakes.test_fake.A Fake Object.test 0000: should raise a TypeError when the configuration does not exist'
-p12
-I42
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0013: should return false if the second method has a more positional arguments than the first method'
 p13
-I41
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime1.test 0000: should return true if the live function is an instance method'
+I43
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0009: should have the same docstring as the live callable'
 p14
-I47
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0003: should raise an attribute error when accessing __self__ and the method is not a bound or unbound instance method'
-p15
-I81
-sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0002: should return false if the argspecs are completely different'
-p16
 I89
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0007: should not have a reference to the fake unbound version of the method if the method is unbound'
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0013: should return false if the second method has a more positional arguments than the first method'
+p15
+I42
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime1.test 0000: should return true if the live function is an instance method'
+p16
+I48
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0003: should raise an attribute error when accessing __self__ and the method is not a bound or unbound instance method'
 p17
-I76
-sS'tests.functional.fakes.test_fake.A Fake Object.test 0002: should raise NotImplementedError when invoking any method that is missing in the fake implementation'
+I83
+sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0002: should return false if the argspecs are completely different'
 p18
+I92
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0007: should not have a reference to the fake unbound version of the method if the method is unbound'
+p19
+I77
+sS'tests.functional.fakes.test_fake.A Fake Object.test 0002: should raise NotImplementedError when invoking any method that is missing in the fake implementation'
+p20
 I3
 sS"tests.unit.fakes.test_fake_callable.A Fake Function's live property.test 0000: should have a read only property named live"
-p19
-I60
-sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0001: should return true if the first method has specified a varargs argument and the second method has an argument '
-p20
-I91
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0001: should return false if the live function is a bound instance method'
 p21
-I56
-sS"tests.unit.fakes.test_fake_callable.A Fake Function's initialization method.test 0000: should raise a value error when inspecting arguments of a builtin callable"
+I61
+sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0001: should return true if the first method has specified a varargs argument and the second method has an argument '
 p22
-I62
-sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0004: should return false if the first method has specified a kwargs argument and the second method has no arguments'
+I94
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0001: should return false if the live function is a bound instance method'
 p23
-I101
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0006: should have a reference to the fake unbound version of the method if the method is bound'
+I57
+sS"tests.unit.fakes.test_fake_callable.A Fake Function's initialization method.test 0000: should raise a value error when inspecting arguments of a builtin callable"
 p24
-I75
-sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0008: should have a reference to the fake unbound version of the method if the method is bound'
+I63
+sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0004: should return false if the first method has specified a kwargs argument and the second method has no arguments'
 p25
+I104
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0006: should have a reference to the fake unbound version of the method if the method is bound'
+p26
+I76
+sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0008: should have a reference to the fake unbound version of the method if the method is bound'
+p27
 I25
 sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0005: should return false if the first method has no arguments and the second method has specified a kwargs argument'
-p26
-I102
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0002: should return true if the argspecs are not completely identical but the first method has a varargs argument'
-p27
-I30
-sS'tests.functional.fakes.test_fake.A Fake Object.test 0000: should substitute the real object with the fake object'
 p28
+I105
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0002: should return true if the argspecs are not completely identical but the first method has a varargs argument'
+p29
+I31
+sS'tests.functional.fakes.test_fake.A Fake Object.test 0000: should substitute the real object with the fake object'
+p30
 I1
 sS'tests.unit.fakes.test_fake.A Fake Object.test 0001: should raise a TestDoubleConfigurationError when the configuration does not contain the type to be faked'
-p29
-I43
-sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0003: should return false if both methods have different keyword arguments and no kwargs argument'
-p30
-I100
-sS"tests.functional.fakes.test_fake_callable.A Fake Function's initialization method.test 0002: should not raise a ValueError when arguments inspection is opted out."
 p31
+I44
+sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0003: should return false if both methods have different keyword arguments and no kwargs argument'
+p32
+I103
+sS"tests.functional.fakes.test_fake_callable.A Fake Function's initialization method.test 0002: should not raise a ValueError when arguments inspection is opted out."
+p33
 I16
 sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime1.test 0000: should return true if the live function is an instance method'
-p32
-I44
+p34
+I45
 sS"tests.functional.fakes.test_fake_callable.A Fake Function's is unbound instance method property.test 0000: should return false if the live function is an instance method"
-p33
+p35
 I8
 sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0008: should raise an attribute error when accessing __func__ and the method is not a bound or unbound instance method'
-p34
-I86
+p36
+I88
 sS"tests.functional.fakes.test_fake_callable.A Fake Function's is unbound instance method property.test 0001: should return true if the live function is an unbound instance method"
-p35
+p37
 I9
 sS'tests.unit.fakes.test_fake_callable.A Fake Function object.test 0000: should be callable'
-p36
-I68
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0002: should have a reference to the instance if the method is bound'
-p37
-I71
-sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0000: should return true if the first method has an argument and the second method has specified a varargs argument'
 p38
-I90
-sS"tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0004: should return false if the second method doesn't have the same amount of arguments as the first"
-p39
-I94
-sS"tests.unit.fakes.test_fake_callable.A Fake Function's initialization method.test 0001: should raise a value error when the provided live object does not match the argspec"
-p40
-I63
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0002: should return false if the live function is not an instance method'
-p41
-I57
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0000: should have the same name as the live object'
-p42
 I69
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0002: should return false if the live function is not an instance method'
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0002: should have a reference to the instance if the method is bound'
+p39
+I72
+sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0000: should return true if the first method has an argument and the second method has specified a varargs argument'
+p40
+I93
+sS"tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0004: should return false if the second method doesn't have the same amount of arguments as the first"
+p41
+I97
+sS"tests.unit.fakes.test_fake_callable.A Fake Function's initialization method.test 0001: should raise a value error when the provided live object does not match the argspec"
+p42
+I64
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0002: should return false if the live function is not an instance method'
 p43
-I52
-sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0001: should have the same name as the live object when the live object is a callable class instance'
+I58
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0000: should have the same name as the live object'
 p44
+I70
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0002: should return false if the live function is not an instance method'
+p45
+I53
+sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0001: should have the same name as the live object when the live object is a callable class instance'
+p46
 I18
 sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0000: should return true if the live function is an unbound instance method'
-p45
-I55
-sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0002: should return true if both methods have the same amount of arguments'
-p46
-I92
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime1.test 0001: should return true if the live function is an unbound instance method'
 p47
-I45
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0003: should return true if the argspecs are not completely identical but the second method has a varargs argument'
+I56
+sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0002: should return true if both methods have the same amount of arguments'
 p48
-I31
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0012: should return false if the first method has a more positional arguments than the second method'
+I95
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime1.test 0001: should return true if the live function is an unbound instance method'
 p49
-I40
-sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0001: should return true if the first method has specified a kwargs argument and the second method has a keyword argument'
+I46
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0003: should return true if the argspecs are not completely identical but the second method has a varargs argument'
 p50
-I98
-sS"tests.functional.fakes.test_fake_callable.A Fake Function's is instance method property.test 0002: should return false if the live function is not an instance method"
+I32
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0012: should return false if the first method has a more positional arguments than the second method'
 p51
+I41
+sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0001: should return true if the first method has specified a kwargs argument and the second method has a keyword argument'
+p52
+I101
+sS"tests.functional.fakes.test_fake_callable.A Fake Function's is instance method property.test 0002: should return false if the live function is not an instance method"
+p53
 I13
 sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0004: should raise an attribute error when attempting to use the im_self alias'
-p52
+p54
 I21
 sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0005: should raise an attribute error when attempting to use the im_class internal attribute'
-p53
-I74
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0000: should return true if the argspecs are completely identical'
-p54
-I28
-sS"tests.unit.fakes.test_fake_callable.A Fake Function's fake property.test 0001: should be equal to the bound __call__ of the fake callable"
 p55
-I67
-sS"tests.functional.fakes.test_fake_callable.A Fake Function's is unbound instance method property.test 0002: should return false if the live function is not an instance method"
+I75
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0000: should return true if the argspecs are completely identical'
 p56
+I29
+sS"tests.unit.fakes.test_fake_callable.A Fake Function's fake property.test 0001: should be equal to the bound __call__ of the fake callable"
+p57
+I68
+sS"tests.functional.fakes.test_fake_callable.A Fake Function's is unbound instance method property.test 0002: should return false if the live function is not an instance method"
+p58
 I10
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0006: should return true if the first method has keyword arguments and the second method has a kwargs argument '
-p57
-I34
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0002: should have a reference to the instance if the method is bound'
-p58
-I80
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0005: should return true if the first method has a kwargs argument and the second method has keyword arguments'
 p59
-I33
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0003: should detect unbound instance methods by inspecting the arguments'
+I35
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0002: should have a reference to the instance if the method is bound'
 p60
-I53
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0001: should have the same name as the live object when the live object is a callable class instance'
+I82
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0005: should return true if the first method has a kwargs argument and the second method has keyword arguments'
 p61
-I79
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime1.test 0001: should return true if the live function is an unbound instance method'
+I34
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0003: should detect unbound instance methods by inspecting the arguments'
 p62
-I48
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime1.test 0002: should return false if the live function is not an instance method'
+I54
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0001: should have the same name as the live object when the live object is a callable class instance'
 p63
-I46
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0006: should have a reference to the fake unbound version of the method if the method is bound'
+I81
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime1.test 0001: should return true if the live function is an unbound instance method'
 p64
-I84
-sS"tests.functional.fakes.test_fake_callable.A Fake Function object.test 0007: should have an attribute named im_class that is equal to the __self__ attribute's type"
+I49
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime1.test 0002: should return false if the live function is not an instance method'
 p65
+I47
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0006: should have a reference to the fake unbound version of the method if the method is bound'
+p66
+I86
+sS"tests.functional.fakes.test_fake_callable.A Fake Function object.test 0007: should have an attribute named im_class that is equal to the __self__ attribute's type"
+p67
 I24
 sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0001: should have the same name as the live object when the live object is a callable class instance'
-p66
-I70
-sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0006: should return false if the first method has no arguments and the second method has specified a varargs argument'
-p67
-I96
-sS'tests.functional.fakes.test_fake.A Fake Object.test 0004: should replace the original properties with the fake properties'
 p68
+I71
+sS'tests.unit.utils.test_are_arguments_identical.A arguments comparison method.test 0006: should return false if the first method has no arguments and the second method has specified a varargs argument'
+p69
+I99
+sS'tests.functional.fakes.test_fake.A Fake Object.test 0004: should replace the original properties with the fake properties'
+p70
 I5
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0011: should return false if both methods have different keyword arguments'
-p69
-I39
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0001: should return false if the live function is a bound an instance method'
-p70
-I51
-sS"tests.functional.fakes.test_fake_callable.A Fake Function's initialization method.test 0000: should raise a TypeError when the provided live object is not callable"
 p71
+I40
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0001: should return false if the live function is a bound an instance method'
+p72
+I52
+sS"tests.functional.fakes.test_fake_callable.A Fake Function's initialization method.test 0000: should raise a TypeError when the provided live object is not callable"
+p73
 I14
 sS"tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0005: should have an attribute named im_class that is equal to the __self__ attribute's type"
-p72
-I83
+p74
+I85
 sS'tests.functional.fakes.test_fake.A Fake Object.test 0006: should raise NotImplementedError when getting or setting any property that is missing in the fake implementation'
-p73
+p75
 I7
 sS'tests.functional.fakes.test_fake.A Fake Object.test 0003: should replace the original methods with the fake methods'
-p74
+p76
 I4
 sS"tests.unit.fakes.test_fake_callable.A Fake Function's initialization method.test 0002: should not raise a value error when the provided live object matches the argspec"
-p75
-I64
+p77
+I65
 sS'tests.functional.fakes.test_fake.A Fake Object.test 0005: should contain all properties that are missing in the fake implementation'
-p76
+p78
 I6
 sS"tests.functional.fakes.test_fake_callable.A Fake Function's initialization method.test 0001: should raise a ValueError when the provided live object does not match the argspec"
-p77
+p79
 I15
 sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0003: should raise an attribute error when accessing __self__ and the method is not a bound or unbound instance method'
-p78
+p80
 I20
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0007: should return false if the first method has a varargs argument and the second method has no positional arguments'
-p79
-I35
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0004: should not detect unbound instance methods by inspecting their self attribute'
-p80
-I54
-sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0001: should return true if the argspecs are almost identical'
 p81
-I88
-sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0002: should have a reference to the instance if the method is bound'
+I36
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0004: should not detect unbound instance methods by inspecting their self attribute'
 p82
+I55
+sS'tests.unit.utils.test_are_argspecs_identical.A argspecs comparison method.test 0001: should return true if the argspecs are almost identical'
+p83
+I91
+sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0002: should have a reference to the instance if the method is bound'
+p84
 I19
 sS"tests.functional.fakes.test_fake_callable.A Fake Function's is instance method property.test 0000: should return true if the live function is an instance method"
-p83
+p85
 I11
 sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0003: should raise an attribute error when accessing __self__ and the method is not a bound or unbound instance method'
-p84
-I72
-sS"tests.unit.fakes.test_fake_callable.A Fake Function's initialization method.test 0003: should not inspect the argspec of the live object when argument inspection is opted out"
-p85
-I65
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0004: should return true if both methods have exactly the same keyword arguments'
 p86
-I32
-sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0006: should have an attribute named im_self that is equal to the __self__ attribute'
+I73
+sS"tests.unit.fakes.test_fake_callable.A Fake Function's initialization method.test 0003: should not inspect the argspec of the live object when argument inspection is opted out"
 p87
-I23
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime1.test 0002: should return false if the live function is not an instance method'
+I66
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0004: should return true if both methods have exactly the same keyword arguments'
 p88
-I49
-sS"tests.unit.fakes.test_fake_callable.A Fake Function's live property.test 0001: should be equal to the provided function"
+I33
+sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0006: should have an attribute named im_self that is equal to the __self__ attribute'
 p89
-I61
-sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0000: should return true if the first method has a keyword argument and the second method has specified a kwargs argument'
+I23
+sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0011: should have the same docstring as the live callable'
 p90
-I97
-sS'tests.functional.fakes.test_fake.A Fake Object.test 0001: should contain all methods that are missing in the fake implementation'
+I28
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime1.test 0002: should return false if the live function is not an instance method'
 p91
+I50
+sS"tests.unit.fakes.test_fake_callable.A Fake Function's live property.test 0001: should be equal to the provided function"
+p92
+I62
+sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0000: should return true if the first method has a keyword argument and the second method has specified a kwargs argument'
+p93
+I100
+sS'tests.functional.fakes.test_fake.A Fake Object.test 0001: should contain all methods that are missing in the fake implementation'
+p94
 I2
 sS'tests.unit.utils.test_are_keyword_arguments_identical.A keyword arguments comparison method.test 0002: should return true if both methods have exactly the same keyword arguments'
-p92
-I99
+p95
+I102
 sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0010: should raise an attribute error when accessing __func__ and the method is not a bound or unbound instance method'
-p93
+p96
 I27
 sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0007: should not have a reference to the fake unbound version of the method if the method is unbound'
-p94
-I85
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0004: should raise an attribute error when attempting to use the im_self alias'
-p95
-I73
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0004: should have an attribute named im_self that is equal to the __self__ attribute'
-p96
-I82
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0004: should detect unbound instance methods by inspecting their self attribute'
 p97
-I59
-sS"tests.unit.fakes.test_fake_callable.A Fake Function's fake property.test 0000: should have a read only property named fake"
+I87
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime2.test 0004: should raise an attribute error when attempting to use the im_self alias'
 p98
-I66
-sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0009: should not have a reference to the fake unbound version of the method if the method is unbound'
+I74
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime2.test 0004: should have an attribute named im_self that is equal to the __self__ attribute'
 p99
+I84
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0004: should detect unbound instance methods by inspecting their self attribute'
+p100
+I60
+sS"tests.unit.fakes.test_fake_callable.A Fake Function's fake property.test 0000: should have a read only property named fake"
+p101
+I67
+sS'tests.functional.fakes.test_fake_callable.A Fake Function object.test 0009: should not have a reference to the fake unbound version of the method if the method is unbound'
+p102
 I26
 sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0009: should return false if the first method has a kwargs argument and the second method has no keyword arguments'
-p100
-I37
-sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0001: should return true if the argspecs are not completely identical but have the same number of positional arguments'
-p101
-I29
-sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0003: should not detect unbound instance methods by inspecting the arguments'
-p102
-I58
-sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0000: should return true if the live function is an unbound instance method'
 p103
-I50
-sS"tests.functional.fakes.test_fake_callable.A Fake Function's is instance method property.test 0001: should return true if the live function is an unbound instance method"
+I38
+sS'tests.functional.utils.test_are_argspecs_identical.A keyword arguments comparison method.test 0001: should return true if the argspecs are not completely identical but have the same number of positional arguments'
 p104
+I30
+sS'tests.unit.fakes.test_fake_callable.having a python 2.x runtime.test 0003: should not detect unbound instance methods by inspecting the arguments'
+p105
+I59
+sS'tests.unit.fakes.test_fake_callable.having a python 3.x runtime.test 0000: should return true if the live function is an unbound instance method'
+p106
+I51
+sS"tests.functional.fakes.test_fake_callable.A Fake Function's is instance method property.test 0001: should return true if the live function is an unbound instance method"
+p107
 I12
 ssS'ids'
-p105
-(dp106
+p108
+(dp109
 I1
-g28
+g30
 sI2
-g91
+g94
 sI3
-g18
+g20
 sI4
-g74
-sI5
-g68
-sI6
 g76
-sI7
-g73
-sI8
-g33
-sI9
-g35
-sI10
-g56
-sI11
-g83
-sI12
-g104
-sI13
-g51
-sI14
-g71
-sI15
-g77
-sI16
-g31
-sI17
-g11
-sI18
-g44
-sI19
-g82
-sI20
+sI5
+g70
+sI6
 g78
+sI7
+g75
+sI8
+g35
+sI9
+g37
+sI10
+g58
+sI11
+g85
+sI12
+g107
+sI13
+g53
+sI14
+g73
+sI15
+g79
+sI16
+g33
+sI17
+g12
+sI18
+g46
+sI19
+g84
+sI20
+g80
 sI21
-g52
+g54
 sI22
 g7
 sI23
-g87
-sI24
-g65
-sI25
-g25
-sI26
-g99
-sI27
-g93
-sI28
-g54
-sI29
-g101
-sI30
-g27
-sI31
-g48
-sI32
-g86
-sI33
-g59
-sI34
-g57
-sI35
-g79
-sI36
-g9
-sI37
-g100
-sI38
-g8
-sI39
-g69
-sI40
-g49
-sI41
-g13
-sI42
-g12
-sI43
-g29
-sI44
-g32
-sI45
-g47
-sI46
-g63
-sI47
-g14
-sI48
-g62
-sI49
-g88
-sI50
-g103
-sI51
-g70
-sI52
-g43
-sI53
-g60
-sI54
-g80
-sI55
-g45
-sI56
-g21
-sI57
-g41
-sI58
-g102
-sI59
-g97
-sI60
-g19
-sI61
 g89
-sI62
-g22
-sI63
-g40
-sI64
-g75
-sI65
-g85
-sI66
-g98
-sI67
-g55
-sI68
-g36
-sI69
-g42
-sI70
-g66
-sI71
-g37
-sI72
-g84
-sI73
-g95
-sI74
-g53
-sI75
-g24
-sI76
-g17
-sI77
-g10
-sI78
-g5
-sI79
-g61
-sI80
-g58
-sI81
-g15
-sI82
-g96
-sI83
-g72
-sI84
-g64
-sI85
-g94
-sI86
-g34
-sI87
-g4
-sI88
-g81
-sI89
-g16
-sI90
-g38
-sI91
-g20
-sI92
-g46
-sI93
-g6
-sI94
-g39
-sI95
-g3
-sI96
+sI24
 g67
-sI97
+sI25
+g27
+sI26
+g102
+sI27
+g96
+sI28
 g90
-sI98
+sI29
+g56
+sI30
+g104
+sI31
+g29
+sI32
 g50
-sI99
-g92
-sI100
-g30
-sI101
+sI33
+g88
+sI34
+g61
+sI35
+g59
+sI36
+g81
+sI37
+g9
+sI38
+g103
+sI39
+g8
+sI40
+g71
+sI41
+g51
+sI42
+g15
+sI43
+g13
+sI44
+g31
+sI45
+g34
+sI46
+g49
+sI47
+g65
+sI48
+g16
+sI49
+g64
+sI50
+g91
+sI51
+g106
+sI52
+g72
+sI53
+g45
+sI54
+g62
+sI55
+g82
+sI56
+g47
+sI57
 g23
-sI102
+sI58
+g43
+sI59
+g105
+sI60
+g100
+sI61
+g21
+sI62
+g92
+sI63
+g24
+sI64
+g42
+sI65
+g77
+sI66
+g87
+sI67
+g101
+sI68
+g57
+sI69
+g38
+sI70
+g44
+sI71
+g68
+sI72
+g39
+sI73
+g86
+sI74
+g98
+sI75
+g55
+sI76
 g26
+sI77
+g19
+sI78
+g10
+sI79
+g11
+sI80
+g5
+sI81
+g63
+sI82
+g60
+sI83
+g17
+sI84
+g99
+sI85
+g74
+sI86
+g66
+sI87
+g97
+sI88
+g36
+sI89
+g14
+sI90
+g4
+sI91
+g83
+sI92
+g18
+sI93
+g40
+sI94
+g22
+sI95
+g48
+sI96
+g6
+sI97
+g41
+sI98
+g3
+sI99
+g69
+sI100
+g93
+sI101
+g52
+sI102
+g95
+sI103
+g32
+sI104
+g25
+sI105
+g28
 ss.

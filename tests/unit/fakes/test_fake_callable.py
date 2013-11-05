@@ -129,6 +129,15 @@ with such.A("Fake Function object") as it:
 
                 _ = sut.__func__
 
+        @it.should("have the same docstring as the live callable")
+        def test_should_have_the_same_docstring_as_the_live_callable(case):
+            sut = callables.FakeCallable(mock.DEFAULT)
+            expected = mock.DEFAULT.__doc__
+
+            actual = sut.__doc__
+
+            case.assertEqual(actual, expected)
+
     with it.having('a python 2.x runtime2'):
         @it.has_test_setup
         def setup(case):
@@ -233,6 +242,15 @@ with such.A("Fake Function object") as it:
 
                 with mock.patch('inspect.ismethod', return_value=False):
                     _ = sut.__func__
+
+        @it.should("have the same docstring as the live callable")
+        def test_should_have_the_same_docstring_as_the_live_callable(case):
+            sut = callables.FakeCallable(mock.DEFAULT)
+            expected = mock.DEFAULT.__doc__
+
+            actual = sut.__doc__
+
+            case.assertEqual(actual, expected)
 
     it.createTests(globals())
 

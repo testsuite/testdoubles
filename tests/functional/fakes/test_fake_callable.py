@@ -168,6 +168,19 @@ with such.A("Fake Function object") as it:
 
             _ = sut.__func__
 
+    @it.should("have the same docstring as the live callable")
+    def test_should_have_the_same_docstring_as_the_live_callable(case):
+        def foo():
+            """Docstring"""
+            pass
+
+        sut = FakeCallable(foo)
+        expected = foo.__doc__
+
+        actual = sut.__doc__
+
+        case.assertEqual(actual, expected)
+
     it.createTests(globals())
 
 with such.A("Fake Function's initialization method") as it:

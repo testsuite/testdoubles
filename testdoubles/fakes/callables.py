@@ -32,6 +32,12 @@ class CallableInternalAttributesBaseMixin(object):
 
         return self.fake.__func__
 
+    def __getattribute__(self, item):
+        if item == '__doc__':
+            return self.live.__doc__
+        
+        return super(CallableInternalAttributesBaseMixin, self).__getattribute__(item)
+
 
 if python3:
     class CallableIntrospectionMixin(object):
