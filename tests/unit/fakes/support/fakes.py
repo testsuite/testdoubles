@@ -7,6 +7,7 @@ def fake_live_bound_callable():
     mocked_callable = mock.MagicMock()
     self = mock.PropertyMock()
     type(mocked_callable).__self__ = self
+    mocked_callable.__name__ = 'fake_live_bound_callable'
     return mocked_callable, self
 
 

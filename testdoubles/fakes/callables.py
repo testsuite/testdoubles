@@ -88,6 +88,10 @@ else:
         def func_doc(self):
             return self.__doc__
 
+        @property
+        def func_name(self):
+            return self.live.__name__
+
 
 class FakeCallable(CallableIntrospectionMixin, CallableInternalAttributesMixin):
     def __init__(self, live, inspect_args=False):

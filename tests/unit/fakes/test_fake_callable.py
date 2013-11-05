@@ -113,6 +113,14 @@ with such.A("Fake Function object") as it:
                 sut = callables.FakeCallable(mock.DEFAULT)
 
                 _ = sut.func_doc
+        
+        @it.should("raise an attribute error when attempting to use the func_name internal attribute")
+        def test_should_raise_an_attribute_error_when_attempting_to_use_the_func_name_internal_attribute(case):
+            with case.assertRaisesRegexp(AttributeError,
+                                         r"'FakeCallable' object has no attribute 'func_name'"):
+                sut = callables.FakeCallable(mock.DEFAULT)
+
+                _ = sut.func_name
 
         @it.should("have a reference to the fake unbound version of the method if the method is bound")
         def test_should_have_a_reference_to_the_fake_unbound_version_of_the_method_if_the_method_is_bound(case):
@@ -254,6 +262,17 @@ with such.A("Fake Function object") as it:
             sut = callables.FakeCallable(live_callable)
 
             actual = sut.im_class
+
+            case.assertEqual(actual, expected)
+
+        @it.should("have an attribute named func_name that is equal to the __name__ attribute")
+        def test_should_have_an_attribute_named_func_name_that_is_equal_to_the_name_attribute(case):
+            live_callable, _ = fake_live_bound_callable()
+            expected = live_callable.__name__
+
+            sut = callables.FakeCallable(live_callable)
+
+            actual = sut.func_name
 
             case.assertEqual(actual, expected)
 
