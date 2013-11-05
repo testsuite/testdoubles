@@ -94,6 +94,38 @@ with such.A("Fake Function object") as it:
 
             _ = sut.im_class
 
+    @it.should("raise an attribute error when attempting to use the func_code internal attribute")
+    @unittest.skipUnless(six.PY3, 'Test should only be run under Python 3.x')
+    def test_should_raise_an_attribute_error_when_attempting_to_use_the_func_code_internal_attribute(case):
+        class Foo(object):
+            def bar(self):
+                pass
+
+        live_unbound_method = Foo.bar
+
+        sut = FakeCallable(live_unbound_method)
+
+        with case.assertRaisesRegexp(AttributeError,
+                                     r"'FakeCallable' object has no attribute 'func_code'"):
+
+            _ = sut.func_code
+            
+    @it.should("raise an attribute error when attempting to use the func_doc internal attribute")
+    @unittest.skipUnless(six.PY3, 'Test should only be run under Python 3.x')
+    def test_should_raise_an_attribute_error_when_attempting_to_use_the_func_doc_internal_attribute(case):
+        class Foo(object):
+            def bar(self):
+                pass
+
+        live_unbound_method = Foo.bar
+
+        sut = FakeCallable(live_unbound_method)
+
+        with case.assertRaisesRegexp(AttributeError,
+                                     r"'FakeCallable' object has no attribute 'func_doc'"):
+
+            _ = sut.func_doc
+
     @it.should("have an attribute named im_self that is equal to the __self__ attribute")
     @unittest.skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
     def test_should_have_an_attribute_named_im_self_that_is_equal_to_the_self_attribute(case):
@@ -123,6 +155,38 @@ with such.A("Fake Function object") as it:
         sut = FakeCallable(live_bound_method)
 
         actual = sut.im_class
+
+        case.assertEqual(actual, expected)
+
+    @it.should("have an attribute named func_code that is equal to the __code__ attribute")
+    @unittest.skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
+    def test_should_have_an_attribute_named_func_code_that_is_equal_to_the_code_attribute(case):
+        class Foo(object):
+            def bar(self):
+                pass
+
+        live_bound_method = Foo().bar
+
+        sut = FakeCallable(live_bound_method)
+        expected = sut.__code__
+
+        actual = sut.func_code
+
+        case.assertEqual(actual, expected)
+        
+    @it.should("have an attribute named func_doc that is equal to the __doc__ attribute")
+    @unittest.skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
+    def test_should_have_an_attribute_named_func_doc_that_is_equal_to_the_doc_attribute(case):
+        class Foo(object):
+            def bar(self):
+                pass
+
+        live_bound_method = Foo().bar
+
+        sut = FakeCallable(live_bound_method)
+        expected = sut.__doc__
+
+        actual = sut.func_doc
 
         case.assertEqual(actual, expected)
 
@@ -178,6 +242,18 @@ with such.A("Fake Function object") as it:
         expected = foo.__doc__
 
         actual = sut.__doc__
+
+        case.assertEqual(actual, expected)
+
+    @it.should("have the same code object as the fake callable")
+    def test_should_have_the_same_docstring_as_the_live_callable(case):
+        def foo():
+            pass
+
+        sut = FakeCallable(foo)
+        expected = sut.fake.__code__
+
+        actual = sut.__code__
 
         case.assertEqual(actual, expected)
 

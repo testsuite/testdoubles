@@ -32,6 +32,10 @@ class CallableInternalAttributesBaseMixin(object):
 
         return self.fake.__func__
 
+    @property
+    def __code__(self):
+        return self.fake.__code__
+
     def __getattribute__(self, item):
         if item == '__doc__':
             return self.live.__doc__
@@ -75,6 +79,14 @@ else:
         @property
         def im_class(self):
             return self.__self__.__class__
+
+        @property
+        def func_code(self):
+            return self.__code__
+
+        @property
+        def func_doc(self):
+            return self.__doc__
 
 
 class FakeCallable(CallableIntrospectionMixin, CallableInternalAttributesMixin):
