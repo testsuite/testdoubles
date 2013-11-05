@@ -126,6 +126,22 @@ with such.A("Fake Function object") as it:
 
             _ = sut.func_doc
             
+    @it.should("raise an attribute error when attempting to use the func_defaults internal attribute")
+    @unittest.skipUnless(six.PY3, 'Test should only be run under Python 3.x')
+    def test_should_raise_an_attribute_error_when_attempting_to_use_the_func_defaults_internal_attribute(case):
+        class Foo(object):
+            def bar(self):
+                pass
+
+        live_unbound_method = Foo.bar
+
+        sut = FakeCallable(live_unbound_method)
+
+        with case.assertRaisesRegexp(AttributeError,
+                                     r"'FakeCallable' object has no attribute 'func_defaults'"):
+
+            _ = sut.func_defaults
+            
     @it.should("raise an attribute error when attempting to use the func_name internal attribute")
     @unittest.skipUnless(six.PY3, 'Test should only be run under Python 3.x')
     def test_should_raise_an_attribute_error_when_attempting_to_use_the_func_name_internal_attribute(case):
@@ -203,6 +219,22 @@ with such.A("Fake Function object") as it:
         expected = sut.__doc__
 
         actual = sut.func_doc
+
+        case.assertEqual(actual, expected)
+        
+    @it.should("have an attribute named func_defaults that is equal to the __defaults__ attribute")
+    @unittest.skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
+    def test_should_have_an_attribute_named_func_defaults_that_is_equal_to_the_defaults_attribute(case):
+        class Foo(object):
+            def bar(self):
+                pass
+
+        live_bound_method = Foo().bar
+
+        sut = FakeCallable(live_bound_method)
+        expected = sut.__defaults__
+
+        actual = sut.func_defaults
 
         case.assertEqual(actual, expected)
         
@@ -286,6 +318,18 @@ with such.A("Fake Function object") as it:
         expected = sut.fake.__code__
 
         actual = sut.__code__
+
+        case.assertEqual(actual, expected)
+
+    @it.should("have the same default values for keyword arguments as the fake callable")
+    def test_should_have_the_same_default_values_for_keyword_arguments_as_the_fake_callable(case):
+        def foo():
+            pass
+
+        sut = FakeCallable(foo)
+        expected = sut.fake.__defaults__
+
+        actual = sut.__defaults__
 
         case.assertEqual(actual, expected)
 
