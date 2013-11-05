@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from inspect import ArgSpec
-from unittest import skipUnless
+from tests.common.compat import unittest
 from nose2.tools import such
 import six
 from testdoubles.fakes.callables import FakeCallable
@@ -64,7 +63,7 @@ with such.A("Fake Function object") as it:
             _ = sut.__self__
 
     @it.should("raise an attribute error when attempting to use the im_self alias")
-    @skipUnless(six.PY3, 'Test should only be run under Python 3.x')
+    @unittest.skipUnless(six.PY3, 'Test should only be run under Python 3.x')
     def test_should_raise_an_attribute_error_when_attempting_to_use_the_im_self_alias(case):
         class Foo(object):
             def bar(self):
@@ -80,7 +79,7 @@ with such.A("Fake Function object") as it:
             _ = sut.im_self
 
     @it.should("raise an attribute error when attempting to use the im_class internal attribute")
-    @skipUnless(six.PY3, 'Test should only be run under Python 3.x')
+    @unittest.skipUnless(six.PY3, 'Test should only be run under Python 3.x')
     def test_should_raise_an_attribute_error_when_attempting_to_use_the_im_class_internal_attribute(case):
         class Foo(object):
             def bar(self):
@@ -96,7 +95,7 @@ with such.A("Fake Function object") as it:
             _ = sut.im_class
 
     @it.should("have an attribute named im_self that is equal to the __self__ attribute")
-    @skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
+    @unittest.skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
     def test_should_have_an_attribute_named_im_self_that_is_equal_to_the_self_attribute(case):
         class Foo(object):
             def bar(self):
@@ -112,7 +111,7 @@ with such.A("Fake Function object") as it:
         case.assertEqual(actual, expected)
 
     @it.should("have an attribute named im_class that is equal to the __self__ attribute's type")
-    @skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
+    @unittest.skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
     def test_should_have_an_attribute_named_im_self_that_is_equal_to_the_self_attribute_type(case):
         class Foo(object):
             def bar(self):

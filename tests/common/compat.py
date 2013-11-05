@@ -10,4 +10,4 @@ try:
 except ImportError:
     import unittest2 as unittest
 
-__all__ = ['mock']
+__all__ = ['mock', 'unittest']
