@@ -40,6 +40,10 @@ class CallableInternalAttributesBaseMixin(object):
     def __defaults__(self):
         return self.fake.__defaults__
 
+    @property
+    def __globals__(self):
+        return self.fake.__globals__
+
     def __getattribute__(self, item):
         if item == '__doc__':
             return self.live.__doc__
@@ -99,6 +103,10 @@ else:
         @property
         def func_defaults(self):
             return self.__defaults__
+
+        @property
+        def func_globals(self):
+            return self.__globals__
 
 
 class FakeCallable(CallableIntrospectionMixin, CallableInternalAttributesMixin):

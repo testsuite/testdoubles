@@ -142,6 +142,22 @@ with such.A("Fake Function object") as it:
 
             _ = sut.func_defaults
             
+    @it.should("raise an attribute error when attempting to use the func_globals internal attribute")
+    @unittest.skipUnless(six.PY3, 'Test should only be run under Python 3.x')
+    def test_should_raise_an_attribute_error_when_attempting_to_use_the_func_globals_internal_attribute(case):
+        class Foo(object):
+            def bar(self):
+                pass
+
+        live_unbound_method = Foo.bar
+
+        sut = FakeCallable(live_unbound_method)
+
+        with case.assertRaisesRegexp(AttributeError,
+                                     r"'FakeCallable' object has no attribute 'func_globals'"):
+
+            _ = sut.func_globals
+            
     @it.should("raise an attribute error when attempting to use the func_name internal attribute")
     @unittest.skipUnless(six.PY3, 'Test should only be run under Python 3.x')
     def test_should_raise_an_attribute_error_when_attempting_to_use_the_func_name_internal_attribute(case):
@@ -235,6 +251,22 @@ with such.A("Fake Function object") as it:
         expected = sut.__defaults__
 
         actual = sut.func_defaults
+
+        case.assertEqual(actual, expected)
+        
+    @it.should("have an attribute named func_globals that is equal to the __globals__ attribute")
+    @unittest.skipUnless(not six.PY3, 'Test should only be run under Python 2.x')
+    def test_should_have_an_attribute_named_func_globals_that_is_equal_to_the_globals_attribute(case):
+        class Foo(object):
+            def bar(self):
+                pass
+
+        live_bound_method = Foo().bar
+
+        sut = FakeCallable(live_bound_method)
+        expected = sut.__globals__
+
+        actual = sut.func_globals
 
         case.assertEqual(actual, expected)
         

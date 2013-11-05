@@ -130,6 +130,14 @@ with such.A("Fake Function object") as it:
 
                 _ = sut.func_defaults
         
+        @it.should("raise an attribute error when attempting to use the func_globals internal attribute")
+        def test_should_raise_an_attribute_error_when_attempting_to_use_the_func_globals_internal_attribute(case):
+            with case.assertRaisesRegexp(AttributeError,
+                                         r"'FakeCallable' object has no attribute 'func_globals'"):
+                sut = callables.FakeCallable(mock.DEFAULT)
+
+                _ = sut.func_globals
+        
         @it.should("have a reference to the fake unbound version of the method if the method is bound")
         def test_should_have_a_reference_to_the_fake_unbound_version_of_the_method_if_the_method_is_bound(case):
             live_callable, _ = fake_live_bound_callable()
@@ -185,6 +193,15 @@ with such.A("Fake Function object") as it:
             expected = sut.fake.__defaults__
 
             actual = sut.__defaults__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("have the same globals as the fake callable")
+        def test_should_have_the_same_default_values_for_keyword_arguments_as_the_fake_callable(case):
+            sut = callables.FakeCallable(mock.DEFAULT)
+            expected = sut.fake.__globals__
+
+            actual = sut.__globals__
 
             case.assertEqual(actual, expected)
 
@@ -304,6 +321,17 @@ with such.A("Fake Function object") as it:
 
             case.assertEqual(actual, expected)
 
+        @it.should("have an attribute named func_globals that is equal to the __globals__ attribute")
+        def test_should_have_an_attribute_named_func_globals_that_is_equal_to_the_globals_attribute(case):
+            live_callable, _ = fake_live_bound_callable()
+
+            sut = callables.FakeCallable(live_callable)
+            expected = sut.__globals__
+
+            actual = sut.func_globals
+
+            case.assertEqual(actual, expected)
+
         @it.should("have a reference to the fake unbound version of the method if the method is bound")
         def test_should_have_a_reference_to_the_fake_unbound_version_of_the_method_if_the_method_is_bound(case):
             live_callable, _ = fake_live_bound_callable()
@@ -350,6 +378,24 @@ with such.A("Fake Function object") as it:
             expected = sut.fake.__code__
 
             actual = sut.__code__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("have the same default values for keyword arguments as the fake callable")
+        def test_should_have_the_same_default_values_for_keyword_arguments_as_the_fake_callable(case):
+            sut = callables.FakeCallable(mock.DEFAULT)
+            expected = sut.fake.__defaults__
+
+            actual = sut.__defaults__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("have the same globals as the fake callable")
+        def test_should_have_the_same_default_values_for_keyword_arguments_as_the_fake_callable(case):
+            sut = callables.FakeCallable(mock.DEFAULT)
+            expected = sut.fake.__globals__
+
+            actual = sut.__globals__
 
             case.assertEqual(actual, expected)
 
