@@ -7,7 +7,7 @@ from nose2.tools import such
 from testdoubles.fakes import callables
 from tests.common.compat import mock
 from tests.common.layers import UnitTestsLayer
-from tests.unit.fakes.support.fakes import fake_live_bound_callable
+from tests.unit.fakes.support.fakes import fake_live_bound_callable, fake_live_unbound_callable
 from tests.unit.fakes.support.mocks import mock_are_argspecs_identical, unmock_are_argspecs_identical
 from tests.unit.fakes.support.stubs import stub_callable, unstub_callable, stub_are_argspecs_identical, unstub_are_argspecs_identical, stub_python_version, unstub_python_version
 
@@ -98,6 +98,36 @@ with such.A("Fake Function object") as it:
 
                 _ = sut.im_class
 
+        @it.should("have a reference to the fake unbound version of the method if the method is bound")
+        def test_should_have_a_reference_to_the_fake_unbound_version_of_the_method_if_the_method_is_bound(case):
+            live_callable, _ = fake_live_bound_callable()
+
+            sut = callables.FakeCallable(live_callable)
+            expected = sut.fake.__func__
+            with mock.patch('inspect.ismethod', return_value=True):
+                actual = sut.__func__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("not have a reference to the fake unbound version of the method if the method is unbound")
+        def test_should_not_have_a_reference_to_the_fake_unbound_version_of_the_method_if_the_method_is_unbound(case):
+            live_callable, _ = fake_live_unbound_callable()
+            sut = callables.FakeCallable(live_callable)
+            expected = None
+            with mock.patch('inspect.ismethod', return_value=False):
+                with mock.patch('inspect.getargspec', return_value=ArgSpec(['self'], None, None, None)):
+                    actual = sut.__func__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("raise an attribute error when accessing __func__ and the method is not bound")
+        def test_should_raise_an_attribute_error_when_accessing_func_and_the_method_is_not_bound(case):
+            with case.assertRaisesRegexp(AttributeError,
+                                         r"'function' object has no attribute '__func__'"):
+                sut = callables.FakeCallable(mock.DEFAULT)
+
+                _ = sut.__func__
+
     with it.having('a python 2.x runtime2'):
         @it.has_test_setup
         def setup(case):
@@ -171,6 +201,37 @@ with such.A("Fake Function object") as it:
             actual = sut.im_class
 
             case.assertEqual(actual, expected)
+
+        @it.should("have a reference to the fake unbound version of the method if the method is bound")
+        def test_should_have_a_reference_to_the_fake_unbound_version_of_the_method_if_the_method_is_bound(case):
+            live_callable, _ = fake_live_bound_callable()
+
+            sut = callables.FakeCallable(live_callable)
+            expected = sut.fake.__func__
+            with mock.patch('inspect.ismethod', return_value=True):
+                actual = sut.__func__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("not have a reference to the fake unbound version of the method if the method is unbound")
+        def test_should_not_have_a_reference_to_the_fake_unbound_version_of_the_method_if_the_method_is_unbound(case):
+            live_callable, _ = fake_live_unbound_callable()
+            sut = callables.FakeCallable(live_callable)
+            expected = None
+
+            with mock.patch('inspect.ismethod', return_value=True):
+                actual = sut.__func__
+
+            case.assertEqual(actual, expected)
+
+        @it.should("raise an attribute error when accessing __func__ and the method is not bound")
+        def test_should_raise_an_attribute_error_when_accessing_func_and_the_method_is_not_bound(case):
+            with case.assertRaisesRegexp(AttributeError,
+                                         r"'function' object has no attribute '__func__'"):
+                sut = callables.FakeCallable(mock.DEFAULT)
+
+                with mock.patch('inspect.ismethod', return_value=False):
+                    _ = sut.__func__
 
     it.createTests(globals())
 

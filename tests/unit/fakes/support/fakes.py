@@ -8,3 +8,11 @@ def fake_live_bound_callable():
     self = mock.PropertyMock()
     type(mocked_callable).__self__ = self
     return mocked_callable, self
+
+
+def fake_live_unbound_callable():
+    mocked_callable = mock.MagicMock()
+    self = mock.PropertyMock()
+    self.return_value = None
+    type(mocked_callable).__self__ = self
+    return mocked_callable, self

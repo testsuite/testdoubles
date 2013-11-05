@@ -22,6 +22,16 @@ class CallableInternalAttributesBaseMixin(object):
         except AttributeError:
             raise AttributeError("'function' object has no attribute '__self__'")
 
+    @property
+    def __func__(self):
+        if not self.is_instance_method:
+            raise AttributeError("'function' object has no attribute '__func__'")
+
+        if self.is_unbound_instance_method:
+            return None
+
+        return self.fake.__func__
+
 
 if python3:
     class CallableIntrospectionMixin(object):
