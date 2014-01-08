@@ -77,8 +77,7 @@ The distinction also prevents mixing different kinds of test doubles which reduc
 Features
 ++++++++
 
-* Complete API compatibility with mock (testdoubles can be used as a drop in replacement so you're old tests will
- still work).
+* Complete API compatibility with mock (testdoubles can be used as a drop in replacement so you're old tests will still work).
 * Patching of the dependency and not the call site.
 * Completely non-intrusive to the code under test.
 * Minimally intrusive to the testing code.
