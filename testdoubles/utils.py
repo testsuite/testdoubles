@@ -5,10 +5,6 @@ from types import MethodType
 from funcsigs import signature
 
 
-def make_function_from_signature(f):
-    pass
-
-
 def bind_function_to_object(f, obj):
     if 'self' not in signature(f).parameters.keys():
         raise ValueError('%s does not have a self argument' % f)
