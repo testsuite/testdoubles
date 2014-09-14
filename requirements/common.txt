@@ -1,1 +1,2 @@
 funcsigs>=0.4.0
+cached_property>=0.1.5

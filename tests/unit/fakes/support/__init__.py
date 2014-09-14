@@ -2,5 +2,10 @@
 # -*- coding: utf-8 -*-
 
 
-class RealObject(object):
+class EmptyFake(object):
     pass
+
+
+class RealObject(object):
+    def foo(self):
+        pass
